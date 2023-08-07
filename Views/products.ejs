@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <!-- FontAwesome CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <!-- Custom CSS -->
-    
-        <link rel="stylesheet" href="styles.css" />
-        <title>Web Develop 1</title>
-    </head>
-    
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="styles.css" />
+    <title>Web Develop 1</title>
+</head>
+
 <body>
-     <div class="header__bar">Free Shipping on Orders Over $50</div>
+    <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
         <a href="#" class="nav__logo">Mon'sa</a>
         <div class="nav__links">
@@ -31,15 +32,156 @@
 
         </div>
         <div class="nav__icons">
-                <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
-                <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
-                <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
-                    <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
+            <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
+            <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
+            <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
+            <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
         </div>
     </nav>
+
+    <section class="section" id="products">
+        <div style="max-width:1650px;" class="container">
+            <div class="row">
+                <div id="sidebar">
+                    <h3>CATEGORIES</h3>
+                    <div class="checklist categories">
+                        <ul>
+                            <li><a class="Filter" data-filter="category" data-value="T-shirts"><span></span>T-shirts
+                                </a></li>
+                            <li><a class="Filter" data-filter="category" data-value="jeans"><span></span>Jeans
+                                </a></li>
+                            <li><a class="Filter" data-filter="category" data-value="Jackets"><span></span>Jackets </a>
+                            </li>
+                            <li><a class="Filter" data-filter="category" data-value="Shoes"><span></span>Shoes
+                                </a></li>
+                        </ul>
+                    </div>
+
+                    <h3>COLORS</h3>
+                    <div class="checklist colors">
+                        <ul id="color-list">
+                            <li><a class="Filter" data-filter="color" data-value="White"><span
+                                        style="background:#e0e0e0"></span>White</a></li>
+                            <li><a class="Filter" data-filter="color" data-value="Black"><span
+                                        style="background:#060606"></span>Black</a></li>
+                            <li><a class="Filter" data-filter="color" data-value="Blue"><span
+                                        style="background:#7896e2"></span>Blue </a>
+                            </li>
+                            <li><a class="Filter" data-filter="color" data-value="Yellow"><span
+                                        style="background:#d2d816"></span>Yellow </a></li>
+                            <li><a class="Filter" data-filter="color" data-value="Green"><span
+                                        style="background:#27d98f"></span>Green </a></li>
+                            <li><a class="Filter" data-filter="color" data-value="Pink"><span
+                                        style="background:#ba2b61"></span>Pink</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>SIZES</h3>
+                    <div class="checklist sizes">
+                        <ul id="size-list">
+                            <li><a class="Filter" data-filter="size" data-value="S"><span></span>S</a>
+                            </li>
+                            <li><a class="Filter" data-filter="size" data-value="M"><span></span>M </a>
+                            </li>
+                            <li><a class="Filter" data-filter="size" data-value="L"><span></span>L </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>GENDER</h3>
+                    <div class="checklist gender">
+                        <ul id="gender-list">
+                            <li><a class="Filter" data-filter="gender" data-value="Womens"><span></span>Womens </a></li>
+                            <li><a class="Filter" data-filter="gender" data-value="Mens"><span></span>Mens </a></li>
+                        </ul>
+                    </div>
+
+                    <br>
+                    <div>
+                        <button type="button" id="clearFiltersBtn" class="btn btn-outline-dark">clear filters</button>
+
+                    </div>
+
+                </div>
+
+                <div class="col" id="product-container">
+                    <!-- Product cards -->
+                    <div class="row">
+                        <!-- Search form -->
+                        <div class="col-md-12">
+                            <form class="search-form">
+                                <input type="text" id="searchInput" placeholder="Search products..."> &nbsp;&nbsp;
+                                <label>Filter by :</label>
+
+                                <select class="filter-input">
+                                    <option></option>
+                                    <option>price low to high</option>
+                                    <option>price high to low</option>
+                                </select>
+                                <br><br>
+                            </form>
+                        </div>
+
+                        <!-- Example product card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card mb-2 product-card" data-category="" data-color="" data-gender=""
+                                data-size="">
+                                <img style="height: 400px;" src="" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        TITLE
+                                    </h5>
+                                    <p class="card-text">
+                                        DES </p>
+                                    <p class="card-text"><strong>size : </strong>
+                                        SIZE
+                                    </p>
+                                    <p class="card-text"><strong>color : </strong>
+                                        COLOR
+                                    </p>
+                                    <p class="card-text"><strong>gender : </strong>
+                                        GENDER
+                                    </p>
+
+                                    <div class="mb-2">
+                                        <span class="font-bold"><strong>$PRICE</strong></span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <span class="align-middle glyphicon glyphicon-star"
+                                                    aria-hidden="true"></span> <span
+                                                    class="align-middle glyphicon glyphicon-star"
+                                                    aria-hidden="true"></span> <span
+                                                    class="align-middle glyphicon glyphicon-star"
+                                                    aria-hidden="true"></span> <span
+                                                    class="align-middle glyphicon glyphicon-star"
+                                                    aria-hidden="true"></span> <span
+                                                    class="align-middle glyphicon glyphicon-star-empty"
+                                                    aria-hidden="true"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-primary btn-sm btn-block addToCart"
+                                                    data-product-id="">Add To Cart </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
 
 
 
 </body>
+
 </html>
