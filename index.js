@@ -29,6 +29,11 @@ app.get("/products", async function (req, res) {
 
 
 
+const authController = require("./Controller/authController");
+
+app.get("/login", authController.LoginPage);
+app.get("/register", authController.RegisterPage);
+
 
 
 
