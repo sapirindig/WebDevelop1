@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   phone: String,
   adress: String,
+  isAdmin: Boolean,
   cart: [
     {
       product: {
