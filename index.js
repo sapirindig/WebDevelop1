@@ -12,7 +12,7 @@ app.get("/", async function (req, res) {
 });
 
 app.get("/login", async function (req, res) {
-  res.render("index.ejs" );
+  res.render("login.ejs" );
 });
 app.get("/register", async function (req, res) {
   res.render("register.ejs" );
