@@ -10,7 +10,6 @@ exports.LoginPage = async (req, res) => {
 exports.RegisterPage = async (req, res) => {
   res.render("register.ejs");
 };
-
 exports.Register = async (req, res) => {
   try {
     const { email, password, fullname,phone,adress } = req.body;
@@ -40,4 +39,13 @@ exports.Register = async (req, res) => {
     console.error(err);
     res.status(500).send("An error occurred during registration");
   }
+};
+exports.Login = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email, password });
+  if (!user) {
+    return res.status(401).send("Invalid email or password");
+  }
+  res.redirect("/");
+
 };

@@ -32,8 +32,10 @@ app.get("/products", async function (req, res) {
 const authController = require("./Controller/authController");
 
 app.get("/register", authController.RegisterPage);
-app.post("/register", authController.Register);
 app.get("/login", authController.LoginPage);
+
+app.post("/register", authController.Register);
+app.post("/login", authController.Login);
 
 
 
