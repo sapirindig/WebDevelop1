@@ -14,7 +14,31 @@
         <link rel="stylesheet" href="styles.css" />
         <title>Web Develop 1</title>
     </head>
-<body>
     
-</body>
+<body>
+    <div class="header__bar">Free Shipping on Orders Over $50</div>
+    <nav class="section__container nav__container">
+        <a href="#" class="nav__logo">Mon'sa</a>
+        <div class="nav__links">
+            <a href="/">HOME</a>
+            <a href="products">PRODUCTS</a>
+            <a href="about">ABOUT</a>
+            <a href="contact">CONTACT</a>
+            <a href="admin">ADMIN</a>
+            <a href="">USERS : <span id="connected-users-count">0</span></a>
+
+
+
+        </div>
+        <div class="nav__icons">
+            <% if (loggedIn) { %>
+                <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
+                <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
+                <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
+                <% } else { %>
+                    <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
+                    <% } %>
+        </div>
+    </nav></body>
 </html>

@@ -28,6 +28,7 @@ const http = require("http").Server(app);
 const path = require("path");
 const mongoose = require("mongoose");
 
+app.set("views", path.join(__dirname, "Views"));
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -36,28 +37,30 @@ app.use(express.json());
 const bodyParser = require("body-parser");
 app.use(express.urlencoded({ extended: true }));
 
+
 app.get("/", async function (req, res) {
   res.render("index.ejs",{ loggedIn: req.session.userId} );
 });
 
+app.get("/contact", async function (req, res) {
+  res.render("contact.ejs",{ loggedIn: req.session.userId} );
+});
+
 app.get("/about", async function (req, res) {
-  res.render("about.ejs" );
+  res.render("about.ejs",{ loggedIn: req.session.userId} );
 });
+
 app.get("/products", async function (req, res) {
-  res.render("products.ejs" );
+  res.render("products.ejs",{ loggedIn: req.session.userId} );
 });
-
-
 
 
 
 
 const authController = require("./Controller/authController");
-
 app.get("/register", authController.RegisterPage);
 app.get("/login", authController.LoginPage);
 app.get("/logout", authController.Logout);
-
 app.post("/register", authController.Register);
 app.post("/login", authController.Login);
 
