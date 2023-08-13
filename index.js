@@ -68,6 +68,10 @@ app.get("/cart", async function (req, res) {
   res.render("cart.ejs",{ loggedIn: req.session.userId} );
 });
 
+app.get("/profile", async function (req, res) {
+  res.render("profile.ejs",{ loggedIn: req.session.userId} );
+});
+
 
 
 
