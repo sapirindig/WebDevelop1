@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -237,6 +238,17 @@
     </div>
 
     <hr />
+
+  
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      socket.on("connectedUsersCount", (count) => {
+          const connectedUsersCount = document.getElementById("connected-users-count");
+          connectedUsersCount.textContent = count;
+      });
+  
+  </script>
 </body>
 
 </html>
