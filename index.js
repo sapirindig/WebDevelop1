@@ -23,7 +23,18 @@ app.use(
 );
 
 const http = require("http").Server(app);
+const io = require("socket.io")(http);
+io.on("connection", (socket) => {
+  // Emit the current count of connected users to the newly connected user
+  socket.emit("connectedUsersCount", io.engine.clientsCount);
 
+  // Broadcast the updated count to all connected users
+  io.emit("connectedUsersCount", io.engine.clientsCount);
+
+  // Handle disconnect event
+  socket.on("disconnect", () => {
+    io.emit("connectedUsersCount", io.engine.clientsCount);
+  });})
 
 const path = require("path");
 const mongoose = require("mongoose");
