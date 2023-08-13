@@ -53,6 +53,10 @@ app.get("/about", async function (req, res) {
 app.get("/products", async function (req, res) {
   res.render("products.ejs",{ loggedIn: req.session.userId} );
 });
+app.get("/cart", async function (req, res) {
+  res.render("cart.ejs",{ loggedIn: req.session.userId} );
+});
+
 
 
 
