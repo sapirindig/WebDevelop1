@@ -150,3 +150,77 @@ http.listen(3000, function () {
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
+  async function aggregateValues() {
+    const Colors = await Product.aggregate([
+      {
+        $group: {
+          _id: "$color",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    const Categories = await Product.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    const Sizes = await Product.aggregate([
+      {
+        $group: {
+          _id: "$size",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    const Genders = await Product.aggregate([
+      {
+        $group: {
+          _id: "$gender",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+  
+    const WhiteCount = Colors.find((item) => item._id === "White")?.count || 0;
+    const BlackCount = Colors.find((item) => item._id === "Black")?.count || 0;
+    const YellowCount = Colors.find((item) => item._id === "Yellow")?.count || 0;
+    const GreenCount = Colors.find((item) => item._id === "Green")?.count || 0;
+    const PinkCount = Colors.find((item) => item._id === "Pink")?.count || 0;
+    const BlueCount = Colors.find((item) => item._id === "Blue")?.count || 0;
+  
+    const TshirtCount =
+      Categories.find((item) => item._id === "T-shirts")?.count || 0;
+    const jeansCount =
+      Categories.find((item) => item._id === "jeans")?.count || 0;
+    const ShoesCount =
+      Categories.find((item) => item._id === "Shoes")?.count || 0;
+    const JacketsCount =
+      Categories.find((item) => item._id === "Jackets")?.count || 0;
+  
+    const SCount = Sizes.find((item) => item._id === "S")?.count || 0;
+    const MCount = Sizes.find((item) => item._id === "M")?.count || 0;
+    const LCount = Sizes.find((item) => item._id === "L")?.count || 0;
+  
+    const MensCount = Genders.find((item) => item._id === "Mens")?.count || 0;
+    const WomensCount = Genders.find((item) => item._id === "Womens")?.count || 0;
+    return {
+      WhiteCount,
+      BlackCount,
+      YellowCount,
+      GreenCount,
+      PinkCount,
+      BlueCount,
+      TshirtCount,
+      jeansCount,
+      ShoesCount,
+      JacketsCount,
+      SCount,
+      MCount,
+      LCount,
+      MensCount,
+      WomensCount,
+    };
+  }
