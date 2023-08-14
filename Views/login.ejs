@@ -15,17 +15,18 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Web Develop 1</title>
 </head>
+
 <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
         <a href="#" class="nav__logo">Mon'sa</a>
         <div class="nav__links">
             <a href="/">HOME</a>
-            <a href="products">PRODUCTS</a>
+            <a href="store">PRODUCTS</a>
             <a href="about">ABOUT</a>
             <a href="contact">CONTACT</a>
             <a href="admin">ADMIN</a>
-            <a href="">USERS : <span id="connected-users-count">0</span></a>
+            <a href="admin">USERS : <span id="connected-users-count">0</span></a>
 
 
 
@@ -42,27 +43,32 @@
         </div>
     </nav>
 
-    <div class="containerform">
-        <br /><br />
-        <h2>User Login</h2>
-        <br />
-        <form class="form" action="/login" method="POST">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <button type="submit">Login</button>
-            </div>
-            <div class="form-group signup-link">
-                Don't have an account? <a href="/register">Sign up</a>
-            </div>
-        </form>
-    </div>
+
+
+<!-- User Login -->
+<div class="containerform">
+    <br /><br />
+    <h2>User Login</h2>
+    <br />
+    <form class="form" action="/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+        <div class="form-group signup-link">
+            Don't have an account? <a href="/register">Sign up</a>
+        </div>
+    </form>
+</div>
+
+
     <hr />      
 
     <footer class="section__container footer__container">
@@ -117,14 +123,18 @@
         </div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-    socket.on("connectedUsersCount", (count) => {
-        const connectedUsersCount = document.getElementById("connected-users-count");
-        connectedUsersCount.textContent = count;
-    });
 
-</script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on("connectedUsersCount", (count) => {
+            const connectedUsersCount = document.getElementById("connected-users-count");
+            connectedUsersCount.textContent = count;
+        });
+
+    </script>
+
+
 </body>
+
 </html>

@@ -1,5 +1,7 @@
-const Product = require("./Models/ProductModel");
 
+const Product = require("./Models/ProductModel");
+const Orders = require("./Models/OrderModel");
+const User = require("./Models/UserModel");
 
 const express = require("express");
 const session = require("express-session");
@@ -8,7 +10,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
 const store = new MongoDBStore({
-  uri: "mongodb://127.0.0.1/WebDevelop_1", // MongoDB connection URI
+  uri: "mongodb://localhost/WebDevelop_1", // MongoDB connection URI
   collection: "sessions", // Collection name to store sessions
 });
 // Catch and log any errors from the session store
@@ -37,19 +39,15 @@ io.on("connection", (socket) => {
   // Handle disconnect event
   socket.on("disconnect", () => {
     io.emit("connectedUsersCount", io.engine.clientsCount);
-  });})
+  });
 
+  // Handle the request for the count of connected users
+  socket.on("requestConnectedUsersCount", () => {
+    socket.emit("connectedUsersCount", io.engine.clientsCount);
+  });
+});
 const path = require("path");
-const mongoose = require("mongoose");
-
-app.set("views", path.join(__dirname, "Views"));
-
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
-
 const bodyParser = require("body-parser");
-app.use(express.urlencoded({ extended: true }));
 
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -74,40 +72,23 @@ const fileFilter = function (req, file, cb) {
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use("/public/images",express.static(path.join(__dirname, "public", "images"))
+);
+app.use(express.json());
 
 
 
 app.get("/", async function (req, res) {
-  const mensClothing = (await Product.find({ gender: "Mens" })).splice(0,8);
-  const womensClothing = (await Product.find({ gender: "Womens" })).splice(0,8);
-  res.render("index.ejs", { loggedIn: req.session.userId, mensClothing ,womensClothing});
+  const mensClothing = (await Product.find({ gender: "Mens" })).splice(0,4);
+  const womensClothing = (await Product.find({ gender: "Womens" })).splice(0,4);
+  res.render("index.ejs", { loggedIn: req.session.userId, mensClothing ,womensClothing} );
 });
+
 
 app.get("/products", async function (req, res) {
   const {
@@ -150,16 +131,20 @@ app.get("/products", async function (req, res) {
   });
 });
 
-app.get("/contact", async function (req, res) {
-  res.render("contact.ejs",{ loggedIn: req.session.userId} );
+app.get("/contact", function (req, res) {
+  res.render("contact.ejs", { loggedIn: req.session.userId });
 });
 
-
-app.get("/about", async function (req, res) {
-  res.render("about.ejs",{ loggedIn: req.session.userId} );
+app.get("/about", function (req, res) {
+  res.render("about.ejs", { loggedIn: req.session.userId });
 });
 
-
+app.get("/profile", async function (req, res) {
+  const userId = req.session.userId;
+  const userDetails = await User.findById(userId);
+  const orders = await Orders.find({ userId: req.session.userId });
+  res.render("profile.ejs", { loggedIn: req.session.userId, orders,userDetails });
+});
 
 app.get("/admin", async function (req, res) {
   const products = await Product.find()
@@ -169,51 +154,47 @@ app.get("/admin", async function (req, res) {
 
 
 
-
-
-
-
-
-app.get("/cart", async function (req, res) {
-  res.render("cart.ejs",{ loggedIn: req.session.userId} );
-});
-
-app.get("/profile", async function (req, res) {
-  res.render("profile.ejs",{ loggedIn: req.session.userId} );
-});
-
+const userController = require("./Controller/userController");
+app.put("/user/changeFullname", userController.ChangeFullname);
+app.put("/user/changePassword", userController.ChangePassword);
+app.put("/user/changeEmail", userController.ChangeEmail);
+app.put("/user/changePhone", userController.ChangePhone);
+app.put("/user/changeAdress", userController.ChangeAddress);
 
 
 const authController = require("./Controller/authController");
-app.get("/register", authController.RegisterPage);
-app.get("/login", authController.LoginPage);
 app.get("/logout", authController.Logout);
 app.post("/register", authController.Register);
 app.post("/login", authController.Login);
-
+app.get("/login", authController.LoginPage);
+app.get("/register", authController.RegisterPage);
 
 
 const adminController = require("./Controller/adminController");
+app.get("/admin/products", adminController.getProductList);
 app.post("/admin/create",upload.single("imagePath"),adminController.createProduct);
 app.post("/admin/update-product", adminController.updateProduct);
 app.post("/admin/delete-product", adminController.deleteProduct);
+app.get("/admin", adminController.adminPage);
+app.get("/admin/orders", adminController.getOrders);
+
+
+const cartController = require("./Controller/cartController.js");
+app.get("/cart", cartController.getCartPage);
+app.get("/cart/items", cartController.getCartItems);
+app.post("/cart/order", cartController.PlaceOrder);
+app.post("/cart/:productId", cartController.addCart);
+app.post("/cart/:index/:quantity", cartController.changeAmount);
+app.delete("/cart/:deleteIndex", cartController.removeFromCart);
+app.get("/cart/clear", cartController.ClearCart);
 
 
 
 
 
-
-
-
-
-
-http.listen(3000, function () {
-    console.log("Server is running on port 3000");
-  });
-  
-
-  mongoose
-  .connect("mongodb://127.0.0.1/WebDevelop_1", {
+const mongoose = require("mongoose");
+mongoose
+  .connect("mongodb://localhost/WebDevelop_1", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -224,78 +205,81 @@ http.listen(3000, function () {
     console.error("Error connecting to MongoDB:", error);
   });
 
+http.listen(3000, function () {
+  console.log("Server is running on port 3000");
+});
 
-  async function aggregateValues() {
-    const Colors = await Product.aggregate([
-      {
-        $group: {
-          _id: "$color",
-          count: { $sum: 1 },
-        },
+async function aggregateValues() {
+  const Colors = await Product.aggregate([
+    {
+      $group: {
+        _id: "$color",
+        count: { $sum: 1 },
       },
-    ]);
-    const Categories = await Product.aggregate([
-      {
-        $group: {
-          _id: "$category",
-          count: { $sum: 1 },
-        },
+    },
+  ]);
+  const Categories = await Product.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        count: { $sum: 1 },
       },
-    ]);
-    const Sizes = await Product.aggregate([
-      {
-        $group: {
-          _id: "$size",
-          count: { $sum: 1 },
-        },
+    },
+  ]);
+  const Sizes = await Product.aggregate([
+    {
+      $group: {
+        _id: "$size",
+        count: { $sum: 1 },
       },
-    ]);
-    const Genders = await Product.aggregate([
-      {
-        $group: {
-          _id: "$gender",
-          count: { $sum: 1 },
-        },
+    },
+  ]);
+  const Genders = await Product.aggregate([
+    {
+      $group: {
+        _id: "$gender",
+        count: { $sum: 1 },
       },
-    ]);
-  
-    const WhiteCount = Colors.find((item) => item._id === "White")?.count || 0;
-    const BlackCount = Colors.find((item) => item._id === "Black")?.count || 0;
-    const YellowCount = Colors.find((item) => item._id === "Yellow")?.count || 0;
-    const GreenCount = Colors.find((item) => item._id === "Green")?.count || 0;
-    const PinkCount = Colors.find((item) => item._id === "Pink")?.count || 0;
-    const BlueCount = Colors.find((item) => item._id === "Blue")?.count || 0;
-  
-    const TshirtCount =
-      Categories.find((item) => item._id === "T-shirts")?.count || 0;
-    const jeansCount =
-      Categories.find((item) => item._id === "jeans")?.count || 0;
-    const ShoesCount =
-      Categories.find((item) => item._id === "Shoes")?.count || 0;
-    const JacketsCount =
-      Categories.find((item) => item._id === "Jackets")?.count || 0;
-  
-    const SCount = Sizes.find((item) => item._id === "S")?.count || 0;
-    const MCount = Sizes.find((item) => item._id === "M")?.count || 0;
-    const LCount = Sizes.find((item) => item._id === "L")?.count || 0;
-  
-    const MensCount = Genders.find((item) => item._id === "Mens")?.count || 0;
-    const WomensCount = Genders.find((item) => item._id === "Womens")?.count || 0;
-    return {
-      WhiteCount,
-      BlackCount,
-      YellowCount,
-      GreenCount,
-      PinkCount,
-      BlueCount,
-      TshirtCount,
-      jeansCount,
-      ShoesCount,
-      JacketsCount,
-      SCount,
-      MCount,
-      LCount,
-      MensCount,
-      WomensCount,
-    };
-  }
+    },
+  ]);
+
+  const WhiteCount = Colors.find((item) => item._id === "White")?.count || 0;
+  const BlackCount = Colors.find((item) => item._id === "Black")?.count || 0;
+  const YellowCount = Colors.find((item) => item._id === "Yellow")?.count || 0;
+  const GreenCount = Colors.find((item) => item._id === "Green")?.count || 0;
+  const PinkCount = Colors.find((item) => item._id === "Pink")?.count || 0;
+  const BlueCount = Colors.find((item) => item._id === "Blue")?.count || 0;
+
+  const TshirtCount =
+    Categories.find((item) => item._id === "T-shirts")?.count || 0;
+  const jeansCount =
+    Categories.find((item) => item._id === "jeans")?.count || 0;
+  const ShoesCount =
+    Categories.find((item) => item._id === "Shoes")?.count || 0;
+  const JacketsCount =
+    Categories.find((item) => item._id === "Jackets")?.count || 0;
+
+  const SCount = Sizes.find((item) => item._id === "S")?.count || 0;
+  const MCount = Sizes.find((item) => item._id === "M")?.count || 0;
+  const LCount = Sizes.find((item) => item._id === "L")?.count || 0;
+
+  const MensCount = Genders.find((item) => item._id === "Mens")?.count || 0;
+  const WomensCount = Genders.find((item) => item._id === "Womens")?.count || 0;
+  return {
+    WhiteCount,
+    BlackCount,
+    YellowCount,
+    GreenCount,
+    PinkCount,
+    BlueCount,
+    TshirtCount,
+    jeansCount,
+    ShoesCount,
+    JacketsCount,
+    SCount,
+    MCount,
+    LCount,
+    MensCount,
+    WomensCount,
+  };
+}

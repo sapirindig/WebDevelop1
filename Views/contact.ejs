@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Web Develop 1</title>
 </head>
+
 <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
@@ -42,7 +43,6 @@
         </div>
     </nav>
 
-    
     <section class="contact_section layout_padding-bottom layout_padding2-top">
         <div class="container px-0">
             <div class="heading_container">
@@ -88,7 +88,9 @@
             </div>
         </div>
     </section>
+
     <hr />
+
     <footer class="section__container footer__container">
         <div class="footer__col">
             <h4 class="footer__heading">CONTACT INFO</h4>
@@ -126,6 +128,9 @@
             </div>
         </div>
     </footer>
+
+    <hr />
+
     <div class="section__container footer__bar">
         <div class="copyright">
             Copyright © 2023 Web Design Mastery. All rights reserved.
@@ -141,15 +146,19 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io();
-      socket.on("connectedUsersCount", (count) => {
-          const connectedUsersCount = document.getElementById("connected-users-count");
-          connectedUsersCount.textContent = count;
-      });
-  
-  </script>
+        const socket = io();
+        socket.on("connectedUsersCount", (count) => {
+            const connectedUsersCount = document.getElementById("connected-users-count");
+            connectedUsersCount.textContent = count;
+        });
+
+    </script>
+
+
 </body>
-</html>
+
+
+
 <style>
     .contact_section {
   position: relative;

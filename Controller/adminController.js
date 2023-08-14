@@ -1,4 +1,18 @@
 const Product = require("../Models/ProductModel");
+const Order = require("../Models/OrderModel");
+
+const mongoose = require("mongoose");
+
+exports.getProductList = async (req, res) => {
+  Product.find({})
+    .then((products) => {
+      res.json(products);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving products");
+    });
+};
 
 exports.createProduct = async (req, res) => {
     try {
@@ -111,4 +125,17 @@ exports.deleteProduct = async (req, res) => {
       console.error(error);
       res.status(500).send("Error deleting product");
     }
+};
+
+exports.getOrders = async (req, res) => {
+  try {
+    
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch orders" });
+  }};
+
+exports.adminPage = async (req, res) => {
+    res.render("Pages/Admin.ejs", { loggedIn: req.session.userId });
 };
