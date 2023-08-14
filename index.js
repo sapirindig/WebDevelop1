@@ -82,8 +82,6 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-
-
 app.get("/", async function (req, res) {
   const mensClothing = (await Product.find({ gender: "Mens" })).splice(0,8);
   const womensClothing = (await Product.find({ gender: "Womens" })).splice(0,8);
@@ -131,30 +129,30 @@ app.get("/products", async function (req, res) {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get("/contact", async function (req, res) {
   res.render("contact.ejs",{ loggedIn: req.session.userId} );
 });
+
 
 app.get("/about", async function (req, res) {
   res.render("about.ejs",{ loggedIn: req.session.userId} );
 });
 
-app.get("/products", async function (req, res) {
-  res.render("products.ejs",{ loggedIn: req.session.userId} );
+app.get("/admin", async function (req, res) {
+  const products = await Product.find()
+  res.render("admin.ejs", { loggedIn: req.session.userId , products });
 });
+
+
+
+
+
+
+
+
+
+
+
 app.get("/cart", async function (req, res) {
   res.render("cart.ejs",{ loggedIn: req.session.userId} );
 });
