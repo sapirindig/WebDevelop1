@@ -138,12 +138,12 @@ app.get("/about", async function (req, res) {
   res.render("about.ejs",{ loggedIn: req.session.userId} );
 });
 
+
+
 app.get("/admin", async function (req, res) {
   const products = await Product.find()
   res.render("admin.ejs", { loggedIn: req.session.userId , products });
 });
-
-
 
 
 
@@ -160,8 +160,6 @@ app.get("/cart", async function (req, res) {
 app.get("/profile", async function (req, res) {
   res.render("profile.ejs",{ loggedIn: req.session.userId} );
 });
-
-
 
 
 
