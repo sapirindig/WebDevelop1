@@ -51,6 +51,27 @@ app.use(express.json());
 const bodyParser = require("body-parser");
 app.use(express.urlencoded({ extended: true }));
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/images");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const fileExtension = path.extname(file.originalname);
+    const filename = file.fieldname + "-" + uniqueSuffix + fileExtension;
+    cb(null, filename);
+  },
+});
+const fileFilter = function (req, file, cb) {
+  // Check if the file format is jpg or png
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true); // Accept the file
+  } else {
+    cb(new Error("Only JPEG and PNG file formats are allowed"), false); // Reject the file
+  }
+};
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 
 
@@ -172,7 +193,10 @@ app.post("/login", authController.Login);
 
 
 
-
+const adminController = require("./Controller/adminController");
+app.post("/admin/create",upload.single("imagePath"),adminController.createProduct);
+app.post("/admin/update-product", adminController.updateProduct);
+app.post("/admin/delete-product", adminController.deleteProduct);
 
 
 
