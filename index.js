@@ -1,3 +1,4 @@
+const Product = require("./Models/ProductModel");
 
 
 const express = require("express");
@@ -84,8 +85,11 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/", async function (req, res) {
-  res.render("index.ejs",{ loggedIn: req.session.userId} );
+  const mensClothing = (await Product.find({ gender: "Mens" })).splice(0,8);
+  const womensClothing = (await Product.find({ gender: "Womens" })).splice(0,8);
+  res.render("index.ejs", { loggedIn: req.session.userId, mensClothing ,womensClothing});
 });
+
 
 app.get("/contact", async function (req, res) {
   res.render("contact.ejs",{ loggedIn: req.session.userId} );

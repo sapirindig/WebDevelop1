@@ -26,6 +26,7 @@
             <a href="about">ABOUT</a>
             <a href="contact">CONTACT</a>
             <a href="admin">ADMIN</a>
+            <a href="crud">crud</a>
             <a href="">USERS : <span id="connected-users-count">0</span></a>
 
 
@@ -42,7 +43,7 @@
                     <% } %>
         </div>
     </nav>
-    
+
     <header>
         <div class="section__container header__container">
             <div class="header__content">
@@ -92,23 +93,27 @@
     <section class="section__container musthave__container">
         <h2 class="section__title">For Women's</h2>
         <div class="musthave__grid">
+         <% for (let i=0; i < womensClothing.length; i++) { %>
 
             <div class="musthave__card">
-                <img src="" alt="must have" />
-                <h4>Ttile  %> </h4>
-                <p><del>$45.00</del> 55.00</p>
+                <img src="<%= womensClothing[i].imageUrl %>" alt="must have" />
+                <h4><%= womensClothing[i].title  %> </h4>
+                <p><del>$45.00</del>  <%=  womensClothing[i].price  %>.00</p>
             </div>
+        <% } %>
         </div>
     </section>
 
     <section class="section__container musthave__container">
         <h2 class="section__title">For Men's</h2>
         <div class="musthave__grid">
+            <% for (let i=0; i < mensClothing.length; i++) { %>
                 <div class="musthave__card">
-                    <img src="" alt="must have" />
-                    <h4>Title  %></h4>
-                    <p><del>$45.00</del> $50.00  </p>
+                    <img src="<%= mensClothing[i].imageUrl %>" alt="must have" />
+                    <h4><%= mensClothing[i].title  %></h4>
+                    <p><del>$45.00</del> $<%= mensClothing[i].price  %>.00  </p>
                 </div>
+                <% } %>
         </div>
     </section>
 
@@ -172,6 +177,9 @@
         </div>
     </section>
 
+
+    <hr />
+
     <footer class="section__container footer__container">
         <div class="footer__col">
             <h4 class="footer__heading">CONTACT INFO</h4>
@@ -210,7 +218,8 @@
         </div>
     </footer>
 
-    
+    <hr />
+
     <div class="section__container footer__bar">
         <div class="copyright">
             Copyright © 2023 Web Design Mastery. All rights reserved.
@@ -224,18 +233,17 @@
     </div>
 
 
-    <hr />
- 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io();
-      socket.on("connectedUsersCount", (count) => {
-          const connectedUsersCount = document.getElementById("connected-users-count");
-          connectedUsersCount.textContent = count;
-      });
-  
-  </script>
+        const socket = io();
+        socket.on("connectedUsersCount", (count) => {
+            const connectedUsersCount = document.getElementById("connected-users-count");
+            connectedUsersCount.textContent = count;
+        });
+
+    </script>
+
+
 </body>
 
 </html>
-
