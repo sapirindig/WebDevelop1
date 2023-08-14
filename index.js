@@ -90,6 +90,59 @@ app.get("/", async function (req, res) {
   res.render("index.ejs", { loggedIn: req.session.userId, mensClothing ,womensClothing});
 });
 
+app.get("/products", async function (req, res) {
+  const {
+    WhiteCount,
+    BlackCount,
+    YellowCount,
+    GreenCount,
+    PinkCount,
+    BlueCount,
+    TshirtCount,
+    jeansCount,
+    ShoesCount,
+    JacketsCount,
+    SCount,
+    MCount,
+    LCount,
+    MensCount,
+    WomensCount,
+  } = await aggregateValues();
+
+  const products = await Product.find();
+  res.render("products.ejs", {
+    loggedIn: req.session.userId,
+    products,
+    WhiteCount,
+    BlackCount,
+    YellowCount,
+    GreenCount,
+    PinkCount,
+    BlueCount,
+    TshirtCount,
+    jeansCount,
+    ShoesCount,
+    JacketsCount,
+    SCount,
+    MCount,
+    LCount,
+    MensCount,
+    WomensCount,
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get("/contact", async function (req, res) {
   res.render("contact.ejs",{ loggedIn: req.session.userId} );
@@ -150,6 +203,8 @@ http.listen(3000, function () {
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
+
+
   async function aggregateValues() {
     const Colors = await Product.aggregate([
       {

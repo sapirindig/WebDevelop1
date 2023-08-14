@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,6 +42,10 @@
                     <% } %>
         </div>
     </nav>
+
+
+
+
     <section class="section" id="products">
         <div style="max-width:1650px;" class="container">
             <div class="row">
@@ -50,14 +53,15 @@
                     <h3>CATEGORIES</h3>
                     <div class="checklist categories">
                         <ul>
-                            <li><a class="Filter" data-filter="category" data-value="T-shirts"><span></span>T-shirts
+                            <li><a class="Filter" data-filter="category" data-value="T-shirts"><span></span>T-shirts (
+                                    <%= TshirtCount %>)
                                 </a></li>
                             <li><a class="Filter" data-filter="category" data-value="jeans"><span></span>Jeans
-                                </a></li>
-                            <li><a class="Filter" data-filter="category" data-value="Jackets"><span></span>Jackets </a>
-                            </li>
+                                    (<%= jeansCount %>)</a></li>
+                            <li><a class="Filter" data-filter="category" data-value="Jackets"><span></span>Jackets (<%=
+                                        JacketsCount %>)</a></li>
                             <li><a class="Filter" data-filter="category" data-value="Shoes"><span></span>Shoes
-                                </a></li>
+                                    (<%= ShoesCount %>)</a></li>
                         </ul>
                     </div>
 
@@ -65,18 +69,18 @@
                     <div class="checklist colors">
                         <ul id="color-list">
                             <li><a class="Filter" data-filter="color" data-value="White"><span
-                                        style="background:#e0e0e0"></span>White</a></li>
+                                        style="background:#e0e0e0"></span>White (<%= WhiteCount %>)</a></li>
                             <li><a class="Filter" data-filter="color" data-value="Black"><span
-                                        style="background:#060606"></span>Black</a></li>
+                                        style="background:#060606"></span>Black (<%= BlackCount %>)</a></li>
                             <li><a class="Filter" data-filter="color" data-value="Blue"><span
-                                        style="background:#7896e2"></span>Blue </a>
+                                        style="background:#7896e2"></span>Blue (<%= BlueCount %>)</a>
                             </li>
                             <li><a class="Filter" data-filter="color" data-value="Yellow"><span
-                                        style="background:#d2d816"></span>Yellow </a></li>
+                                        style="background:#d2d816"></span>Yellow (<%= YellowCount%>)</a></li>
                             <li><a class="Filter" data-filter="color" data-value="Green"><span
-                                        style="background:#27d98f"></span>Green </a></li>
+                                        style="background:#27d98f"></span>Green (<%= GreenCount %>)</a></li>
                             <li><a class="Filter" data-filter="color" data-value="Pink"><span
-                                        style="background:#ba2b61"></span>Pink</a>
+                                        style="background:#ba2b61"></span>Pink (<%= PinkCount %>)</a>
                             </li>
                         </ul>
                     </div>
@@ -84,11 +88,11 @@
                     <h3>SIZES</h3>
                     <div class="checklist sizes">
                         <ul id="size-list">
-                            <li><a class="Filter" data-filter="size" data-value="S"><span></span>S</a>
+                            <li><a class="Filter" data-filter="size" data-value="S"><span></span>S (<%= SCount %>)</a>
                             </li>
-                            <li><a class="Filter" data-filter="size" data-value="M"><span></span>M </a>
+                            <li><a class="Filter" data-filter="size" data-value="M"><span></span>M (<%= MCount %>)</a>
                             </li>
-                            <li><a class="Filter" data-filter="size" data-value="L"><span></span>L </a>
+                            <li><a class="Filter" data-filter="size" data-value="L"><span></span>L (<%= LCount %>)</a>
                             </li>
                         </ul>
                     </div>
@@ -96,8 +100,10 @@
                     <h3>GENDER</h3>
                     <div class="checklist gender">
                         <ul id="gender-list">
-                            <li><a class="Filter" data-filter="gender" data-value="Womens"><span></span>Womens </a></li>
-                            <li><a class="Filter" data-filter="gender" data-value="Mens"><span></span>Mens </a></li>
+                            <li><a class="Filter" data-filter="gender" data-value="Womens"><span></span>Womens (<%=
+                                        WomensCount %>)</a></li>
+                            <li><a class="Filter" data-filter="gender" data-value="Mens"><span></span>Mens (<%=
+                                        MensCount %>)</a></li>
                         </ul>
                     </div>
 
@@ -127,54 +133,60 @@
                             </form>
                         </div>
 
-                        <!-- Example product card -->
-                        <div class="col-md-4 mb-4">
-                            <div class="card mb-2 product-card" data-category="" data-color="" data-gender=""
-                                data-size="">
-                                <img style="height: 400px;" src="" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        TITLE
-                                    </h5>
-                                    <p class="card-text">
-                                        DES </p>
-                                    <p class="card-text"><strong>size : </strong>
-                                        SIZE
-                                    </p>
-                                    <p class="card-text"><strong>color : </strong>
-                                        COLOR
-                                    </p>
-                                    <p class="card-text"><strong>gender : </strong>
-                                        GENDER
-                                    </p>
+                        <% for (let i=0; i < products.length; i++) { %>
+                            <!-- Example product card -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card mb-2 product-card" data-category="<%= products[i].category %>"
+                                    data-color="<%= products[i].color %>" data-gender="<%= products[i].gender %>"
+                                    data-size="<%= products[i].size %>">
+                                    <img style="height: 400px;" src="<%= products[i].imageUrl %>" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= products[i].title %>
+                                        </h5>
+                                        <p class="card-text">
+                                            <%= products[i].description %>
+                                        </p>
+                                        <p class="card-text"><strong>size : </strong>
+                                            <%= products[i].size %>
+                                        </p>
+                                        <p class="card-text"><strong>color : </strong>
+                                            <%= products[i].color %>
+                                        </p>
+                                        <p class="card-text"><strong>gender : </strong>
+                                            <%= products[i].gender %>
+                                        </p>
 
-                                    <div class="mb-2">
-                                        <span class="font-bold"><strong>$PRICE</strong></span>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <span class="align-middle glyphicon glyphicon-star"
-                                                    aria-hidden="true"></span> <span
-                                                    class="align-middle glyphicon glyphicon-star"
-                                                    aria-hidden="true"></span> <span
-                                                    class="align-middle glyphicon glyphicon-star"
-                                                    aria-hidden="true"></span> <span
-                                                    class="align-middle glyphicon glyphicon-star"
-                                                    aria-hidden="true"></span> <span
-                                                    class="align-middle glyphicon glyphicon-star-empty"
-                                                    aria-hidden="true"></span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <button type="button" class="btn btn-primary btn-sm btn-block addToCart"
-                                                    data-product-id="">Add To Cart </button>
+                                        <div class="mb-2">
+                                            <span class="font-bold"><strong>$<%= products[i].price %></strong></span>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <span class="align-middle glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span> <span
+                                                        class="align-middle glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span> <span
+                                                        class="align-middle glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span> <span
+                                                        class="align-middle glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span> <span
+                                                        class="align-middle glyphicon glyphicon-star-empty"
+                                                        aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button type="button"
+                                                        class="btn btn-primary btn-sm btn-block addToCart"
+                                                        data-product-id="<%= products[i]._id %>">Add To Cart </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
+                            </div>
+                            <% } %>
+                                <!-- Add more product cards as needed -->
                     </div>
                 </div>
             </div>
@@ -225,6 +237,8 @@
         </div>
     </footer>
 
+    <hr />
+
     <div class="section__container footer__bar">
         <div class="copyright">
             Copyright © 2023 Web Design Mastery. All rights reserved.
@@ -237,18 +251,130 @@
         </div>
     </div>
 
-    <hr />
 
-  
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io();
-      socket.on("connectedUsersCount", (count) => {
-          const connectedUsersCount = document.getElementById("connected-users-count");
-          connectedUsersCount.textContent = count;
-      });
-  
-  </script>
+        const socket = io();
+        socket.on("connectedUsersCount", (count) => {
+            const connectedUsersCount = document.getElementById("connected-users-count");
+            connectedUsersCount.textContent = count;
+        });
+
+    </script>
+    
 </body>
 
+
 </html>
+
+<style>
+    #products {
+        overflow: hidden;
+    }
+
+    #sidebar {
+        float: left;
+        background: #fff;
+        width: 290px;
+        padding: 30px 0 0 100px;
+        height: auto;
+        border-right: 1px solid #eee;
+    }
+
+    #sidebar h3 {
+        color: #262626;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        clear: both;
+        margin-top: 0;
+    }
+
+    .checklist ul li {
+        font-size: 14px;
+        font-weight: 400;
+        list-style: none;
+        padding: 7px 0 7px 23px;
+    }
+
+    .checklist li span {
+        float: left;
+        width: 11px;
+        height: 11px;
+        margin-left: -23px;
+        margin-top: 4px;
+        border: 1px solid #d1d3d7;
+        position: relative;
+    }
+
+    .container {
+        max-width: 1700px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    #product-container {
+        float: left;
+        width: calc(100% - 290px);
+    }
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .search-form {
+        margin-bottom: -15px;
+    }
+
+    .search-form input[type="text"] {
+        height: 30px;
+        padding: 0 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+    }
+
+    .search-form .filter-input {
+        height: 30px;
+        padding: 0 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+    }
+
+    .card {
+        margin-bottom: 30px;
+    }
+
+    .card-img-top {
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        margin-top: 0;
+        font-weight: 700;
+    }
+
+    .card-text {
+        margin-bottom: 10px;
+    }
+
+    .card-footer {
+        background-color: #f5f5f5;
+        padding: 10px;
+    }
+
+    .addToCart {
+        margin-top: 5px;
+    }
+
+    #clearFiltersBtn {
+        margin-top: 10px;
+    }
+</style>
