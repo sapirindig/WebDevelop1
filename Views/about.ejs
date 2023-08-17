@@ -1,409 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <!-- Custom CSS -->
 
     <link rel="stylesheet" href="styles.css" />
     <title>Web Develop 1</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
-        <a href="#" class="nav__logo">SLK</a>
-        <div class="nav__links">
-            <a href="/">HOME</a>
-            <a href="products">PRODUCTS</a>
-            <a href="about">ABOUT</a>
-            <a href="contact">CONTACT</a>
-            <a href="admin">ADMIN</a>
-            <a href="">USERS : <span id="connected-users-count">0</span></a>
-
-
-
-        </div>
-        <div class="nav__icons">
-            <% if (loggedIn) { %>
-                <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
-                <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
-                <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
-                <% } else { %>
-                    <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
-                    <% } %>
-        </div>
+      <a href="#" class="nav__logo">SLK</a>
+      <div class="nav__links">
+        <a href="/">HOME</a>
+        <a href="products">PRODUCTS</a>
+        <a href="about">ABOUT</a>
+        <a href="contact">CONTACT</a>
+        <a href="admin">ADMIN</a>
+        <a href="">USERS : <span id="connected-users-count">0</span></a>
+      </div>
+      <div class="nav__icons">
+        <% if (loggedIn) { %>
+        <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="profile"
+          ><i class="fas fa-user"></i> profile</a
+        >
+        <a class="nav-link" href="cart"
+          ><i class="fas fa-shopping-bag"></i> cart</a
+        >
+        <% } else { %>
+        <a class="nav-link" href="login"
+          ><i class="fas fa-sign-in-alt"></i> Login</a
+        >
+        <a class="nav-link" href="register"
+          ><i class="fas fa-user-plus"></i> Register</a
+        >
+        <% } %>
+      </div>
     </nav>
 
-
-    
     <!-- ***** About Area Starts ***** -->
     <div class="about-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="left-image">
-                        <img src="images/about-left-image.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="right-content">
-                        <h4>About Us &amp; Our Skills</h4>
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
-                        <div class="quote">
-                            <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod kon tempor incididunt ut labore.</p>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="left-image">
+              <img src="images/about-left-image.jpg" alt="" />
             </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="right-content">
+              <h4>About Us &amp; Our Skills</h4>
+              <span
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod kon tempor incididunt ut labore.</span
+              >
+              <div class="quote">
+                <i class="fa fa-quote-left"></i>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiuski smod kon tempor incididunt ut labore.
+                </p>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod kon tempor incididunt ut labore et dolore magna aliqua
+                ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip.
+              </p>
+              <ul>
+                <li>
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-behance"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- ***** About Area Ends ***** -->
 
     <!-- ***** Our Team Area Starts ***** -->
     <section class="our-team">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading">
-                        <h2>Our Amazing Team</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-item">
-                        <div class="thumb">
-                            <div class="hover-effect">
-                                <div class="inner-content">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <img src="images/team-member-01.jpg">
-                        </div>
-                        <div class="down-content">
-                            <h4>Ragnar Lodbrok</h4>
-                            <span>Product Caretaker</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-item">
-                        <div class="thumb">
-                            <div class="hover-effect">
-                                <div class="inner-content">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <img src="images/team-member-02.jpg">
-                        </div>
-                        <div class="down-content">
-                            <h4>Ragnar Lodbrok</h4>
-                            <span>Product Caretaker</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-item">
-                        <div class="thumb">
-                            <div class="hover-effect">
-                                <div class="inner-content">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <img src="images/team-member-03.jpg">
-                        </div>
-                        <div class="down-content">
-                            <h4>Ragnar Lodbrok</h4>
-                            <span>Product Caretaker</span>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Our Amazing Team</h2>
+              <span
+                >Details to details is what makes Hexashop different from the
+                other themes.</span
+              >
             </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="team-item">
+              <div class="thumb">
+                <div class="hover-effect">
+                  <div class="inner-content">
+                    <ul>
+                      <li>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <img src="images/team-member-01.jpg" />
+              </div>
+              <div class="down-content">
+                <h4>Ragnar Lodbrok</h4>
+                <span>Product Caretaker</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="team-item">
+              <div class="thumb">
+                <div class="hover-effect">
+                  <div class="inner-content">
+                    <ul>
+                      <li>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <img src="images/team-member-02.jpg" />
+              </div>
+              <div class="down-content">
+                <h4>Ragnar Lodbrok</h4>
+                <span>Product Caretaker</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="team-item">
+              <div class="thumb">
+                <div class="hover-effect">
+                  <div class="inner-content">
+                    <ul>
+                      <li>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <img src="images/team-member-03.jpg" />
+              </div>
+              <div class="down-content">
+                <h4>Ragnar Lodbrok</h4>
+                <span>Product Caretaker</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- ***** Our Team Area Ends ***** -->
-
 
     <hr />
 
     <footer class="section__container footer__container">
-        <div class="footer__col">
-            <h4 class="footer__heading">CONTACT INFO</h4>
-            <p>
-                <i class="ri-map-pin-2-fill"></i> 123,Colman,israel
-            </p>
-            <p><i class="ri-mail-fill"></i>support@Colman.com</p>
-            <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      <div class="footer__col">
+        <h4 class="footer__heading">CONTACT INFO</h4>
+        <p><i class="ri-map-pin-2-fill"></i> 123,Colman,israel</p>
+        <p><i class="ri-mail-fill"></i>support@Colman.com</p>
+        <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">COMPANY</h4>
+        <p>Home</p>
+        <p>About Us</p>
+        <p>Work With Us</p>
+        <p>Our Blog</p>
+        <p>Terms & Conditions</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">USEFUL LINK</h4>
+        <p>Help</p>
+        <p>Track My Order</p>
+        <p>Men</p>
+        <p>Women</p>
+        <p>Shoes</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">INSTAGRAM</h4>
+        <div class="instagram__grid">
+          <img src="images/instagram-1.jpg" alt="instagram" />
+          <img src="images/instagram-2.jpg" alt="instagram" />
+          <img src="images/instagram-3.jpg" alt="instagram" />
+          <img src="images/instagram-4.jpg" alt="instagram" />
+          <img src="images/instagram-5.jpg" alt="instagram" />
+          <img src="images/instagram-6.jpg" alt="instagram" />
         </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">COMPANY</h4>
-            <p>Home</p>
-            <p>About Us</p>
-            <p>Work With Us</p>
-            <p>Our Blog</p>
-            <p>Terms & Conditions</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">USEFUL LINK</h4>
-            <p>Help</p>
-            <p>Track My Order</p>
-            <p>Men</p>
-            <p>Women</p>
-            <p>Shoes</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">INSTAGRAM</h4>
-            <div class="instagram__grid">
-                <img src="images/instagram-1.jpg" alt="instagram" />
-                <img src="images/instagram-2.jpg" alt="instagram" />
-                <img src="images/instagram-3.jpg" alt="instagram" />
-                <img src="images/instagram-4.jpg" alt="instagram" />
-                <img src="images/instagram-5.jpg" alt="instagram" />
-                <img src="images/instagram-6.jpg" alt="instagram" />
-            </div>
-        </div>
+      </div>
     </footer>
 
     <hr />
 
     <div class="section__container footer__bar">
-        <div class="copyright">
-            Copyright © 2023 Web Design Mastery. All rights reserved.
-        </div>
-        <div class="footer__form">
-            <form>
-                <input type="text" placeholder="ENTER YOUR EMAIL" />
-                <button class="btn" type="submit">SUBSCRIBE</button>
-            </form>
-        </div>
+      <div class="copyright">
+        Copyright © 2023 Web Design Mastery. All rights reserved.
+      </div>
+      <div class="footer__form">
+        <form>
+          <input type="text" placeholder="ENTER YOUR EMAIL" />
+          <button class="btn" type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
     </div>
-
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
-        socket.on("connectedUsersCount", (count) => {
-            const connectedUsersCount = document.getElementById("connected-users-count");
-            connectedUsersCount.textContent = count;
-        });
-
+      const socket = io();
+      socket.on("connectedUsersCount", (count) => {
+        const connectedUsersCount = document.getElementById(
+          "connected-users-count"
+        );
+        connectedUsersCount.textContent = count;
+      });
     </script>
-
-
-</body>
-
+  </body>
 </html>
 <style>
-    
-.about-page-heading {
-  margin-top: 160px;
-  margin-bottom: 30px;
-  background-image: url(../images/about-us-page-heading.jpg);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+  .about-page-heading {
+    margin-top: 160px;
+    margin-bottom: 30px;
+    background-image: url(../images/about-us-page-heading.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
-.about-us {
-  margin-top: 80px;
-}
+  .about-us {
+    margin-top: 80px;
+  }
 
-.about-us .left-image img {
-  width: 100%;
-  overflow: hidden;
-}
+  .about-us .left-image img {
+    width: 100%;
+    overflow: hidden;
+  }
 
-.about-us .right-content {
-  margin-left: 30px;
-}
+  .about-us .right-content {
+    margin-left: 30px;
+  }
 
-.about-us .right-content h4 {
-  font-size: 34px;
-  font-weight: 700;
-  color: #2a2a2a;
-}
+  .about-us .right-content h4 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #2a2a2a;
+  }
 
-.about-us .right-content span {
-  font-size: 14px;
-  color: #aaaaaa;
-  font-weight: 500;
-  display: block;
-  margin-top: 25px;
-}
+  .about-us .right-content span {
+    font-size: 14px;
+    color: #aaaaaa;
+    font-weight: 500;
+    display: block;
+    margin-top: 25px;
+  }
 
-.about-us .right-content .quote {
-  margin-top: 25px;
-}
+  .about-us .right-content .quote {
+    margin-top: 25px;
+  }
 
-.about-us .right-content .quote i {
-  float: left;
-  font-size: 32px;
-  margin-right: 15px;
-  margin-top: 10px;
-}
+  .about-us .right-content .quote i {
+    float: left;
+    font-size: 32px;
+    margin-right: 15px;
+    margin-top: 10px;
+  }
 
-.about-us .right-content .quote p {
-  font-style: italic;
-  color: #2a2a2a;
-  font-weight: 500;
-}
+  .about-us .right-content .quote p {
+    font-style: italic;
+    color: #2a2a2a;
+    font-weight: 500;
+  }
 
-.about-us .right-content p {
-  font-size: 14px;
-  color: #aaaaaa;
-  font-weight: 500;
-  display: block;
-  margin-top: 25px;
-}
+  .about-us .right-content p {
+    font-size: 14px;
+    color: #aaaaaa;
+    font-weight: 500;
+    display: block;
+    margin-top: 25px;
+  }
 
-.about-us .right-content ul {
-  border-top: 3px dotted #eee;
-  margin-top: 30px;
-  padding-top: 30px;
-}
+  .about-us .right-content ul {
+    border-top: 3px dotted #eee;
+    margin-top: 30px;
+    padding-top: 30px;
+  }
 
-.about-us .right-content ul li {
-  display: inline-block;
-  margin-right: 5px;
-}
+  .about-us .right-content ul li {
+    display: inline-block;
+    margin-right: 5px;
+  }
 
-.about-us .right-content ul li a {
-  width: 44px;
-  height: 44px;
-  background-color: #2a2a2a;
-  color: #fff;
-  display: inline-block;
-  text-align: center;
-  line-height: 44px;
-  border-radius: 50%;
-  transition: all .5s;
-}
+  .about-us .right-content ul li a {
+    width: 44px;
+    height: 44px;
+    background-color: #2a2a2a;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    line-height: 44px;
+    border-radius: 50%;
+    transition: all 0.5s;
+  }
 
-.about-us .right-content ul li a:hover {
-  background-color: #eee;
-  color: #2a2a2a;
-}
+  .about-us .right-content ul li a:hover {
+    background-color: #eee;
+    color: #2a2a2a;
+  }
 
-.our-team {
-  margin-top: 100px;
-  padding-top: 90px;
-  padding-bottom: 90px;
-  border-top: 3px dotted #eee;
-}
+  .our-team {
+    margin-top: 100px;
+    padding-top: 90px;
+    padding-bottom: 90px;
+    border-top: 3px dotted #eee;
+  }
 
-.our-team .section-heading {
-  margin-bottom: 60px;
-  text-align: center;
-}
+  .our-team .section-heading {
+    margin-bottom: 60px;
+    text-align: center;
+  }
 
-.our-team .section-heading h2 {
-  margin-bottom: 10px;
-}
+  .our-team .section-heading h2 {
+    margin-bottom: 10px;
+  }
 
-.our-team .team-item .thumb {
-  position: relative;
-}
+  .our-team .team-item .thumb {
+    position: relative;
+  }
 
-.our-team .team-item .thumb img {
-  width: 100%;
-  overflow: hidden;
-}
+  .our-team .team-item .thumb img {
+    width: 100%;
+    overflow: hidden;
+  }
 
-.our-team .team-item .thumb .hover-effect {
-  position: absolute;
-  background-color: rgba(0,0,0,0.9);
-  width: 100%;
-  text-align: center;
-  top: 0;
-  bottom: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: all .3s;
-}
+  .our-team .team-item .thumb .hover-effect {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
 
-.our-team .team-item .thumb:hover .hover-effect {
-  opacity: 1;
-  visibility: visible;
-}
+  .our-team .team-item .thumb:hover .hover-effect {
+    opacity: 1;
+    visibility: visible;
+  }
 
-.our-team .team-item .thumb .hover-effect .inner-content {
-  position: absolute;
-  top: 50%;
-  text-align: center;
-  width: 100%;
-  transform: translateY(-22px);
-}
+  .our-team .team-item .thumb .hover-effect .inner-content {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    transform: translateY(-22px);
+  }
 
-.our-team .team-item .thumb .hover-effect .inner-content ul li {
-  display: inline-block;
-  margin: 0px 5px;
-}
+  .our-team .team-item .thumb .hover-effect .inner-content ul li {
+    display: inline-block;
+    margin: 0px 5px;
+  }
 
-.our-team .team-item .thumb .hover-effect .inner-content ul li a {
-  width: 44px;
-  height: 44px;
-  background-color: #fff;
-  color: #2a2a2a;
-  display: inline-block;
-  text-align: center;
-  line-height: 44px;
-  border-radius: 50%;
-  transition: all .3s;
-}
+  .our-team .team-item .thumb .hover-effect .inner-content ul li a {
+    width: 44px;
+    height: 44px;
+    background-color: #fff;
+    color: #2a2a2a;
+    display: inline-block;
+    text-align: center;
+    line-height: 44px;
+    border-radius: 50%;
+    transition: all 0.3s;
+  }
 
-.our-team .team-item .thumb .hover-effect .inner-content ul li a:hover {
-  background-color: #2a2a2a;
-  color: #fff;
-}
+  .our-team .team-item .thumb .hover-effect .inner-content ul li a:hover {
+    background-color: #2a2a2a;
+    color: #fff;
+  }
 
-.our-team .team-item .down-content {
-  text-align: center;
-  padding-top: 25px;
-}
+  .our-team .team-item .down-content {
+    text-align: center;
+    padding-top: 25px;
+  }
 
-.our-team .team-item .down-content h4 {
-  font-size: 24px;
-  color: #2a2a2a;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
+  .our-team .team-item .down-content h4 {
+    font-size: 24px;
+    color: #2a2a2a;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
 
-.our-team .team-item .down-content span {
-  font-size: 14px;
-  color: #a1a1a1;
-  font-weight: 500;
-  display: block;
-  font-style: italic;
-}
-
+  .our-team .team-item .down-content span {
+    font-size: 14px;
+    color: #a1a1a1;
+    font-weight: 500;
+    display: block;
+    font-style: italic;
+  }
 </style>

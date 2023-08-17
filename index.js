@@ -1,6 +1,7 @@
 const Product = require("./Models/ProductModel");
 const Orders = require("./Models/OrderModel");
 const User = require("./Models/UserModel");
+const axios = require("axios");
 
 const express = require("express");
 const session = require("express-session");
@@ -80,6 +81,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", async function (req, res) {
+  const weatherData = await getWeatherFromWeatherbit("Tel Aviv");
   const mensClothing = (await Product.find({ gender: "Mens" })).splice(0, 4);
   const womensClothing = (await Product.find({ gender: "Womens" })).splice(
     0,
@@ -89,6 +91,7 @@ app.get("/", async function (req, res) {
     loggedIn: req.session.userId,
     mensClothing,
     womensClothing,
+    weather: weatherData,
   });
 });
 
@@ -169,8 +172,30 @@ app.get("/profile", async function (req, res) {
 });
 
 app.get("/admin", isAdmin, async function (req, res) {
-  const products = await Product.find();
-  res.render("admin.ejs", { loggedIn: req.session.userId, products });
+  try {
+    const products = await Product.find();
+    const ordersWithUser = await Orders.find().populate("userId", "fullname");
+
+    const transformedOrders = ordersWithUser.map((order) => {
+      const productTitles = order.products.map(
+        (productObj) => productObj.product.title
+      );
+      return {
+        ...order._doc,
+        userName: order.userId.fullname,
+        productTitles,
+      };
+    });
+
+    res.render("admin.ejs", {
+      loggedIn: req.session.userId,
+      products,
+      orders: transformedOrders,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 });
 
 const userController = require("./Controller/userController");
@@ -298,4 +323,21 @@ async function aggregateValues() {
     MensCount,
     WomensCount,
   };
+}
+
+function getWeatherFromWeatherbit(city) {
+  const apiKey = "ad4f584dd4374d1c9ec8cc391daf0445"; // החלף את המחרוזת הזו במפתח ה-API שלך מ-Weatherbit
+  const url = `https://api.weatherbit.io/v2.0/current?city=${encodeURIComponent(
+    city
+  )}&key=${apiKey}&lang=he`;
+
+  return axios
+    .get(url)
+    .then((response) => {
+      return response.data.data[0];
+    })
+    .catch((error) => {
+      console.error("Error fetching weather data:", error);
+      throw error;
+    });
 }

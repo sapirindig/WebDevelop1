@@ -1,422 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <!-- Include jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="styles.css" />
     <title>Web Develop 1</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
-        <a href="#" class="nav__logo">SLK</a>
-        <div class="nav__links">
-            <a href="/">HOME</a>
-            <a href="products">PRODUCTS</a>
-            <a href="about">ABOUT</a>
-            <a href="contact">CONTACT</a>
-            <a href="admin">ADMIN</a>
-            <a href="">USERS : <span id="connected-users-count">0</span></a>
-
-
-
-        </div>
-        <div class="nav__icons">
-            <% if (loggedIn) { %>
-                <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
-                <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
-                <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
-                <% } else { %>
-                    <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
-                    <% } %>
-        </div>
+      <a href="#" class="nav__logo">SLK</a>
+      <div class="nav__links">
+        <a href="/">HOME</a>
+        <a href="products">PRODUCTS</a>
+        <a href="about">ABOUT</a>
+        <a href="contact">CONTACT</a>
+        <a href="admin">ADMIN</a>
+        <a href="">USERS : <span id="connected-users-count">0</span></a>
+      </div>
+      <div class="nav__icons">
+        <% if (loggedIn) { %>
+        <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="profile"
+          ><i class="fas fa-user"></i> profile</a
+        >
+        <a class="nav-link" href="cart"
+          ><i class="fas fa-shopping-bag"></i> cart</a
+        >
+        <% } else { %>
+        <a class="nav-link" href="login"
+          ><i class="fas fa-sign-in-alt"></i> Login</a
+        >
+        <a class="nav-link" href="register"
+          ><i class="fas fa-user-plus"></i> Register</a
+        >
+        <% } %>
+      </div>
     </nav>
 
-    <section style="background-color: #eee;">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col">
-                    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">User</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card mb-4">
-                        <div class="card-body text-center">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                alt="avatar" class="rounded-circle img-fluid" style="width: 150px; margin-left: 180px;">
-                            <h5 class="my-3">
-                                <%= userDetails.fullname %>
-                            </h5>
-                            <p class="text-muted mb-4">
-                                <%= userDetails.adress %>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card mb-4 mb-lg-0">
-                        <div class="card-body p-0">
-                            <ul class="list-group list-group-flush rounded-3">
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fas fa-globe fa-lg text-warning"></i>
-                                    <p class="mb-0">https://mdbootstrap.com</p>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                    <p class="mb-0">mdbootstrap</p>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                    <p class="mb-0">@mdbootstrap</p>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                    <p class="mb-0">mdbootstrap</p>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                    <p class="mb-0">mdbootstrap</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Full Name</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <span class="text-muted mb-0">
-                                        <%= userDetails.fullname %>
-                                    </span>
-
-                                    <span style="float: right;" class="text-muted mb-0">
-                                        <button class="btn btn-outline-info" id="changeFullNameBtn"> Change Full name
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Password</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <span class="text-muted mb-0">
-                                        <%= userDetails.password %>
-                                    </span>
-
-                                    <span style="float: right;" class="text-muted mb-0">
-                                        <button class="btn btn-outline-info" id="changePassword"> Change Password
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Email</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <span class="text-muted mb-0">
-                                        <%= userDetails.email %>
-                                    </span>
-                                    <span style="float: right;"><button class="btn btn-outline-info"
-                                            id="changeEmail">Change Email
-                                            Adress</button></span>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Phone</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <span class="text-muted mb-0">
-                                        <%= userDetails.phone %>
-                                    </span>
-                                    <span style="float: right;">
-                                        <button class="btn btn-outline-info" id="changePhoneNumber"> Change Phone Number
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Address</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <span class="text-muted mb-0">
-                                        <%= userDetails.adress %>
-                                    </span>
-                                    <span style="float: right;">
-                                        <button class="btn btn-outline-info" id="changeAdress">Change Adress</button>
-                                    </span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <h1>Orders</h1>
-                    <div class="card mb-4">
-                        <% orders.forEach((order, index)=> { %>
-
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Products</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% order.products.forEach((product)=> { %>
-
-                                        <tr>
-                                            <td>
-                                                <%= product.product.title %>
-                                            </td>
-                                            <td>
-                                                <%= product.quantity %>
-                                            </td>
-
-                                            <td>
-                                                <%= new Date(order.date).toLocaleDateString('en-GB') %>
-                                            </td>
-                                            <td>$<%= product.product.price %>
-                                            </td>
-                                        </tr>
-                                        <% }); %>
-
-                                </tbody>
-
-                            </table>
-
-                            <% }); %>
-                    </div>
-
-                </div>
-            </div>
+    <section style="background-color: #eee">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  User Profile
+                </li>
+              </ol>
+            </nav>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  alt="avatar"
+                  class="rounded-circle img-fluid"
+                  style="width: 150px; margin-left: 180px"
+                />
+                <h5 class="my-3"><%= userDetails.fullname %></h5>
+                <p class="text-muted mb-4"><%= userDetails.adress %></p>
+              </div>
+            </div>
+            <div class="card mb-4 mb-lg-0">
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush rounded-3">
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-center p-3"
+                  >
+                    <i class="fas fa-globe fa-lg text-warning"></i>
+                    <p class="mb-0">https://mdbootstrap.com</p>
+                  </li>
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-center p-3"
+                  >
+                    <i class="fab fa-github fa-lg" style="color: #333333"></i>
+                    <p class="mb-0">mdbootstrap</p>
+                  </li>
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-center p-3"
+                  >
+                    <i class="fab fa-twitter fa-lg" style="color: #55acee"></i>
+                    <p class="mb-0">@mdbootstrap</p>
+                  </li>
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-center p-3"
+                  >
+                    <i
+                      class="fab fa-instagram fa-lg"
+                      style="color: #ac2bac"
+                    ></i>
+                    <p class="mb-0">mdbootstrap</p>
+                  </li>
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-center p-3"
+                  >
+                    <i
+                      class="fab fa-facebook-f fa-lg"
+                      style="color: #3b5998"
+                    ></i>
+                    <p class="mb-0">mdbootstrap</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Full Name</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <span class="text-muted mb-0">
+                      <%= userDetails.fullname %>
+                    </span>
+
+                    <span style="float: right" class="text-muted mb-0">
+                      <button
+                        class="btn btn-outline-info"
+                        id="changeFullNameBtn"
+                      >
+                        Change Full name
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Password</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <span class="text-muted mb-0">
+                      <%= userDetails.password %>
+                    </span>
+
+                    <span style="float: right" class="text-muted mb-0">
+                      <button class="btn btn-outline-info" id="changePassword">
+                        Change Password
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Email</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <span class="text-muted mb-0">
+                      <%= userDetails.email %>
+                    </span>
+                    <span style="float: right"
+                      ><button class="btn btn-outline-info" id="changeEmail">
+                        Change Email Adress
+                      </button></span
+                    >
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Phone</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <span class="text-muted mb-0">
+                      <%= userDetails.phone %>
+                    </span>
+                    <span style="float: right">
+                      <button
+                        class="btn btn-outline-info"
+                        id="changePhoneNumber"
+                      >
+                        Change Phone Number
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Address</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <span class="text-muted mb-0">
+                      <%= userDetails.adress %>
+                    </span>
+                    <span style="float: right">
+                      <button class="btn btn-outline-info" id="changeAdress">
+                        Change Adress
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h1>Orders</h1>
+            <div class="card mb-4">
+              <% orders.forEach((order, index)=> { %>
+
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Products</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% order.products.forEach((product)=> { %>
+
+                  <tr>
+                    <td><%= product.product.title %></td>
+                    <td><%= product.quantity %></td>
+
+                    <td>
+                      <%= new Date(order.date).toLocaleDateString('en-GB') %>
+                    </td>
+                    <td>$<%= product.product.price %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <hr />
 
     <footer class="section__container footer__container">
-        <div class="footer__col">
-            <h4 class="footer__heading">CONTACT INFO</h4>
-            <p>
-                <i class="ri-map-pin-2-fill"></i> 123,Colman,israel
-            </p>
-            <p><i class="ri-mail-fill"></i>support@Colman.com</p>
-            <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      <div class="footer__col">
+        <h4 class="footer__heading">CONTACT INFO</h4>
+        <p><i class="ri-map-pin-2-fill"></i> 123,Colman,israel</p>
+        <p><i class="ri-mail-fill"></i>support@Colman.com</p>
+        <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">COMPANY</h4>
+        <p>Home</p>
+        <p>About Us</p>
+        <p>Work With Us</p>
+        <p>Our Blog</p>
+        <p>Terms & Conditions</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">USEFUL LINK</h4>
+        <p>Help</p>
+        <p>Track My Order</p>
+        <p>Men</p>
+        <p>Women</p>
+        <p>Shoes</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">INSTAGRAM</h4>
+        <div class="instagram__grid">
+          <img src="images/instagram-1.jpg" alt="instagram" />
+          <img src="images/instagram-2.jpg" alt="instagram" />
+          <img src="images/instagram-3.jpg" alt="instagram" />
+          <img src="images/instagram-4.jpg" alt="instagram" />
+          <img src="images/instagram-5.jpg" alt="instagram" />
+          <img src="images/instagram-6.jpg" alt="instagram" />
         </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">COMPANY</h4>
-            <p>Home</p>
-            <p>About Us</p>
-            <p>Work With Us</p>
-            <p>Our Blog</p>
-            <p>Terms & Conditions</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">USEFUL LINK</h4>
-            <p>Help</p>
-            <p>Track My Order</p>
-            <p>Men</p>
-            <p>Women</p>
-            <p>Shoes</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">INSTAGRAM</h4>
-            <div class="instagram__grid">
-                <img src="images/instagram-1.jpg" alt="instagram" />
-                <img src="images/instagram-2.jpg" alt="instagram" />
-                <img src="images/instagram-3.jpg" alt="instagram" />
-                <img src="images/instagram-4.jpg" alt="instagram" />
-                <img src="images/instagram-5.jpg" alt="instagram" />
-                <img src="images/instagram-6.jpg" alt="instagram" />
-            </div>
-        </div>
+      </div>
     </footer>
 
     <hr />
 
     <div class="section__container footer__bar">
-        <div class="copyright">
-            Copyright © 2023 Web Design Mastery. All rights reserved.
-        </div>
-        <div class="footer__form">
-            <form>
-                <input type="text" placeholder="ENTER YOUR EMAIL" />
-                <button class="btn" type="submit">SUBSCRIBE</button>
-            </form>
-        </div>
+      <div class="copyright">
+        Copyright © 2023 Web Design Mastery. All rights reserved.
+      </div>
+      <div class="footer__form">
+        <form>
+          <input type="text" placeholder="ENTER YOUR EMAIL" />
+          <button class="btn" type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
     </div>
-    <div class="modal fade" id="customAlertModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Change Field Value</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="fieldValueInput" class="form-label">New Value:</label>
-                    <input type="text" class="form-control" id="fieldValueInput">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="confirmChangeBtn">Save Changes</button>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="customAlertModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Change Field Value</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label for="fieldValueInput" class="form-label">New Value:</label>
+            <input type="text" class="form-control" id="fieldValueInput" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary" id="confirmChangeBtn">
+              Save Changes
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
-        socket.on("connectedUsersCount", (count) => {
-            const connectedUsersCount = document.getElementById("connected-users-count");
-            connectedUsersCount.textContent = count;
-        });
-
+      const socket = io();
+      socket.on("connectedUsersCount", (count) => {
+        const connectedUsersCount = document.getElementById(
+          "connected-users-count"
+        );
+        connectedUsersCount.textContent = count;
+      });
     </script>
     <script>
-        function openCustomAlert(fieldLabel, fieldValue, callback) {
-            const fieldValueInput = document.getElementById('fieldValueInput');
-            fieldValueInput.value = fieldValue;
-            const confirmChangeBtn = document.getElementById('confirmChangeBtn');
-            confirmChangeBtn.addEventListener('click', () => {
-                const newValue = fieldValueInput.value;
-                callback(newValue);
-                $('#customAlertModal').modal('hide');
-            });
-            $('#customAlertModal').modal('show');
-        }
-
-        const changeFullNameBtn = document.getElementById('changeFullNameBtn');
-        const changePassword = document.getElementById('changePassword');
-        const changeAdress = document.getElementById('changeAdress');
-        const changeEmail = document.getElementById('changeEmail');
-        const changePhoneNumber = document.getElementById('changePhoneNumber');
-
-        changeFullNameBtn.addEventListener('click', () => {
-            const fullName = '<%= userDetails.fullname %>';
-            openCustomAlert('Full Name', fullName, (newName) => {
-                fetch('/user/changeFullname', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        newFullName: newName
-                    })
-                })
-
-            });
-
+      function openCustomAlert(fieldLabel, fieldValue, callback) {
+        const fieldValueInput = document.getElementById("fieldValueInput");
+        fieldValueInput.value = fieldValue;
+        const confirmChangeBtn = document.getElementById("confirmChangeBtn");
+        confirmChangeBtn.addEventListener("click", () => {
+          const newValue = fieldValueInput.value;
+          callback(newValue);
+          $("#customAlertModal").modal("hide");
         });
+        $("#customAlertModal").modal("show");
+      }
 
+      const changeFullNameBtn = document.getElementById("changeFullNameBtn");
+      const changePassword = document.getElementById("changePassword");
+      const changeAdress = document.getElementById("changeAdress");
+      const changeEmail = document.getElementById("changeEmail");
+      const changePhoneNumber = document.getElementById("changePhoneNumber");
 
-        changePassword.addEventListener('click', () => {
-            const password = '<%= userDetails.password %>';
-            openCustomAlert('Password', password, (newPassword) => {
-                console.log(newPassword)
-                fetch('/user/changePassword', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        newPassword: newPassword
-                    })
-                })
-
-            });
-
+      changeFullNameBtn.addEventListener("click", () => {
+        const fullName = "<%= userDetails.fullname %>";
+        openCustomAlert("Full Name", fullName, (newName) => {
+          fetch("/user/changeFullname", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              newFullName: newName,
+            }),
+          });
         });
- 
- 
-        changePhoneNumber.addEventListener('click', () => {
-            const phone = '<%= userDetails.phone %>';
-            openCustomAlert('Full Name', phone, (newPhone) => {
-                fetch('/user/changePhone', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        newPhone: newPhone
-                    })
-                })
+      });
 
-            });
-
+      changePassword.addEventListener("click", () => {
+        const password = "<%= userDetails.password %>";
+        openCustomAlert("Password", password, (newPassword) => {
+          console.log(newPassword);
+          fetch("/user/changePassword", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              newPassword: newPassword,
+            }),
+          });
         });
+      });
 
-
-        changeEmail.addEventListener('click', () => {
-            const email = '<%= userDetails.email %>';
-            openCustomAlert('Full Name', email, (newEmail) => {
-                fetch('/user/changeEmail', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        newEmail: newEmail
-                    })
-                })
-
-            });
+      changePhoneNumber.addEventListener("click", () => {
+        const phone = "<%= userDetails.phone %>";
+        openCustomAlert("Full Name", phone, (newPhone) => {
+          fetch("/user/changePhone", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              newPhone: newPhone,
+            }),
+          });
         });
+      });
 
-
-        changeAdress.addEventListener('click', () => {
-            const adress = '<%= userDetails.adress %>';
-            openCustomAlert('Full Name', adress, (newAdress) => {
-                fetch('/user/changeAdress', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        newAdress: newAdress
-                    })
-                })
-
-            });
-
+      changeEmail.addEventListener("click", () => {
+        const email = "<%= userDetails.email %>";
+        openCustomAlert("Full Name", email, (newEmail) => {
+          fetch("/user/changeEmail", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              newEmail: newEmail,
+            }),
+          });
         });
+      });
 
+      changeAdress.addEventListener("click", () => {
+        const adress = "<%= userDetails.adress %>";
+        openCustomAlert("Full Name", adress, (newAdress) => {
+          fetch("/user/changeAdress", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              newAdress: newAdress,
+            }),
+          });
+        });
+      });
     </script>
-
-</body>
-
+  </body>
 </html>

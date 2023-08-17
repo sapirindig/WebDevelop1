@@ -1,151 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <!-- Custom CSS -->
 
     <link rel="stylesheet" href="styles.css" />
     <title>Web Develop 1</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
-        <a href="#" class="nav__logo">SLK</a>
-        <div class="nav__links">
-            <a href="/">HOME</a>
-            <a href="store">PRODUCTS</a>
-            <a href="about">ABOUT</a>
-            <a href="contact">CONTACT</a>
-            <a href="admin">ADMIN</a>
-            <a href="admin">USERS : <span id="connected-users-count">0</span></a>
-
-
-
-        </div>
-        <div class="nav__icons">
-            <% if (loggedIn) { %>
-                <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
-                <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
-                <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
-                <% } else { %>
-                    <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
-                    <% } %>
-        </div>
+      <a href="#" class="nav__logo">SLK</a>
+      <div class="nav__links">
+        <a href="/">HOME</a>
+        <a href="store">PRODUCTS</a>
+        <a href="about">ABOUT</a>
+        <a href="contact">CONTACT</a>
+        <a href="admin">ADMIN</a>
+        <a href="admin">USERS : <span id="connected-users-count">0</span></a>
+      </div>
+      <div class="nav__icons">
+        <% if (loggedIn) { %>
+        <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="profile"
+          ><i class="fas fa-user"></i> profile</a
+        >
+        <a class="nav-link" href="cart"
+          ><i class="fas fa-shopping-bag"></i> cart</a
+        >
+        <% } else { %>
+        <a class="nav-link" href="login"
+          ><i class="fas fa-sign-in-alt"></i> Login</a
+        >
+        <a class="nav-link" href="register"
+          ><i class="fas fa-user-plus"></i> Register</a
+        >
+        <% } %>
+      </div>
     </nav>
-
 
     <!-- User Login -->
     <div class="containerform">
-        <br /><br />
-        <h2>User Registration</h2>
-        <br />
-        <form class="form" action="/register" method="POST">
-            <div class="form-group">
-                <label for="fullname">Full Name</label>
-                <input type="fullname" id="fullname" name="fullname" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="phone" id="phone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="adress">Adress</label>
-                <input type="adress" id="adress" name="adress" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <button type="submit">Register</button>
-            </div>
-            <div class="form-group signup-link">
-                Already have an account? <a href="/login">Login</a>
-            </div>
-        </form>
+      <br /><br />
+      <h2>User Registration</h2>
+      <br />
+      <form class="form" action="/register" method="POST">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="fullname" id="fullname" name="fullname" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="phone" id="phone" name="phone" required />
+        </div>
+        <div class="form-group">
+          <label for="adress">Adress</label>
+          <input type="adress" id="adress" name="adress" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="form-group">
+          <button type="submit">Register</button>
+        </div>
+        <div class="form-group signup-link">
+          Already have an account? <a href="/login">Login</a>
+        </div>
+      </form>
     </div>
-
 
     <hr />
 
     <footer class="section__container footer__container">
-        <div class="footer__col">
-            <h4 class="footer__heading">CONTACT INFO</h4>
-            <p>
-                <i class="ri-map-pin-2-fill"></i> 123,Colman,israel
-            </p>
-            <p><i class="ri-mail-fill"></i>support@Colman.com</p>
-            <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      <div class="footer__col">
+        <h4 class="footer__heading">CONTACT INFO</h4>
+        <p><i class="ri-map-pin-2-fill"></i> 123,Colman,israel</p>
+        <p><i class="ri-mail-fill"></i>support@Colman.com</p>
+        <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">COMPANY</h4>
+        <p>Home</p>
+        <p>About Us</p>
+        <p>Work With Us</p>
+        <p>Our Blog</p>
+        <p>Terms & Conditions</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">USEFUL LINK</h4>
+        <p>Help</p>
+        <p>Track My Order</p>
+        <p>Men</p>
+        <p>Women</p>
+        <p>Shoes</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">INSTAGRAM</h4>
+        <div class="instagram__grid">
+          <img src="images/instagram-1.jpg" alt="instagram" />
+          <img src="images/instagram-2.jpg" alt="instagram" />
+          <img src="images/instagram-3.jpg" alt="instagram" />
+          <img src="images/instagram-4.jpg" alt="instagram" />
+          <img src="images/instagram-5.jpg" alt="instagram" />
+          <img src="images/instagram-6.jpg" alt="instagram" />
         </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">COMPANY</h4>
-            <p>Home</p>
-            <p>About Us</p>
-            <p>Work With Us</p>
-            <p>Our Blog</p>
-            <p>Terms & Conditions</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">USEFUL LINK</h4>
-            <p>Help</p>
-            <p>Track My Order</p>
-            <p>Men</p>
-            <p>Women</p>
-            <p>Shoes</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">INSTAGRAM</h4>
-            <div class="instagram__grid">
-                <img src="images/instagram-1.jpg" alt="instagram" />
-                <img src="images/instagram-2.jpg" alt="instagram" />
-                <img src="images/instagram-3.jpg" alt="instagram" />
-                <img src="images/instagram-4.jpg" alt="instagram" />
-                <img src="images/instagram-5.jpg" alt="instagram" />
-                <img src="images/instagram-6.jpg" alt="instagram" />
-            </div>
-        </div>
+      </div>
     </footer>
 
     <hr />
 
     <div class="section__container footer__bar">
-        <div class="copyright">
-            Copyright © 2023 Web Design Mastery. All rights reserved.
-        </div>
-        <div class="footer__form">
-            <form>
-                <input type="text" placeholder="ENTER YOUR EMAIL" />
-                <button class="btn" type="submit">SUBSCRIBE</button>
-            </form>
-        </div>
+      <div class="copyright">
+        Copyright © 2023 Web Design Mastery. All rights reserved.
+      </div>
+      <div class="footer__form">
+        <form>
+          <input type="text" placeholder="ENTER YOUR EMAIL" />
+          <button class="btn" type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
     </div>
-
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
-        socket.on("connectedUsersCount", (count) => {
-            const connectedUsersCount = document.getElementById("connected-users-count");
-            connectedUsersCount.textContent = count;
-        });
-
+      const socket = io();
+      socket.on("connectedUsersCount", (count) => {
+        const connectedUsersCount = document.getElementById(
+          "connected-users-count"
+        );
+        connectedUsersCount.textContent = count;
+      });
     </script>
-
-
-</body>
-
+  </body>
 </html>

@@ -1,330 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <!-- Custom CSS -->
 
     <link rel="stylesheet" href="styles.css" />
     <title>Web Develop 1</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
-        <a href="#" class="nav__logo">SLK</a>
-        <div class="nav__links">
-            <a href="/">HOME</a>
-            <a href="products">PRODUCTS</a>
-            <a href="about">ABOUT</a>
-            <a href="contact">CONTACT</a>
-            <a href="admin">ADMIN</a>
-            <a href="">USERS : <span id="connected-users-count">0</span></a>
-
-
-
-        </div>
-        <div class="nav__icons">
-            <% if (loggedIn) { %>
-                <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
-                <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
-                <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
-                <% } else { %>
-                    <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
-                    <% } %>
-        </div>
+      <a href="#" class="nav__logo">SLK</a>
+      <div class="nav__links">
+        <a href="/">HOME</a>
+        <a href="products">PRODUCTS</a>
+        <a href="about">ABOUT</a>
+        <a href="contact">CONTACT</a>
+        <a href="admin">ADMIN</a>
+        <a href="">USERS : <span id="connected-users-count">0</span></a>
+      </div>
+      <div class="nav__icons">
+        <% if (loggedIn) { %>
+        <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="profile"
+          ><i class="fas fa-user"></i> profile</a
+        >
+        <a class="nav-link" href="cart"
+          ><i class="fas fa-shopping-bag"></i> cart</a
+        >
+        <% } else { %>
+        <a class="nav-link" href="login"
+          ><i class="fas fa-sign-in-alt"></i> Login</a
+        >
+        <a class="nav-link" href="register"
+          ><i class="fas fa-user-plus"></i> Register</a
+        >
+        <% } %>
+      </div>
     </nav>
 
-        <section>
-            <div class="px-4 px-lg-0">
-        
-                <div class="pb-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-        
-                                <!-- Shopping cart table -->
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Total</th>
-                                                <th>Remove</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="align-middle" id="cartItems">
-                                            <% for(let i=0; i < cartItems.length; i++) { %>
-                                                <tr id="<%= i %>">
-                                                    <td>
-                                                        <div class="img">
-                                                            <a href="#"><img src="<%= cartItems[i].product.imageUrl %>"
-                                                                    alt="Image"></a>
-                                                            <p>
-                                                                <%= cartItems[i].product.title%>
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="row-price">
-                                                        <%= cartItems[i].product.price %>
-                                                    </td>
-                                                    <td>
-                                                        <div class="qty">
-                                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                            <input style="width: 25px; text-align: center;" type="text"
-                                                                value="1" class="row-quantity">
-                                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </td>
-                                                    <td class="row-total">
-                                                        <%= cartItems[i].product.price *cartItems[i].quantity %>
-                                                    </td>
-                                                    <td style="text-align: center;"><button class="trash"><i
-                                                                class="fa fa-trash"></i></button></td>
-                                                </tr>
-                                                <% } %>
-        
-        
-        
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- End -->
-                            </div>
-                        </div>
-        
-                        <div class="row py-5 p-4 bg-white rounded shadow-sm">
-                            <div class="col-lg-6">
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Coupon code
-                                </div>
-                                <div class="p-4">
-                                    <p class="font-italic mb-4">If you have a coupon code, please enter it in the box below
-                                    </p>
-                                    <div class="input-group mb-4 border rounded-pill p-2">
-                                        <input type="text" placeholder="Apply coupon" aria-describedby="button-addon3"
-                                            class="form-control border-0">
-                                        <div class="input-group-append border-0">
-                                            <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i
-                                                    class="fa fa-gift mr-2"></i>Apply
-                                                coupon</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions
-                                    for seller</div>
-                                <div class="p-4">
-                                    <p class="font-italic mb-4">If you have some information for the seller you can leave
-                                        them in the box below</p>
-                                    <textarea name="" cols="30" rows="2" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary
-                                </div>
-                                <div class="p-4">
-                                    <p class="font-italic mb-4">Shipping and additional costs are calculated based on values
-                                        you have entered.</p>
-                                    <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Shipping and handling</strong><strong>$10.00</strong>
-                                        </li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Tax</strong><strong>$0.00</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Total</strong>
-                                            <h5 class="font-weight-bold grand-total ">$400.00</h5>
-                                        </li>
-                                    </ul>
-                                    <button id="PlaceOrder" class="btn btn-dark rounded-pill py-2 btn-block">Place
-                                        Order</button>
-                                </div>
-                            </div>
-                        </div>
-        
-                    </div>
+    <section>
+      <div class="px-4 px-lg-0">
+        <div class="pb-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                <!-- Shopping cart table -->
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody class="align-middle" id="cartItems">
+                      <% for(let i=0; i < cartItems.length; i++) { %>
+                      <tr id="<%= i %>">
+                        <td>
+                          <div class="img">
+                            <a href="#"
+                              ><img
+                                src="<%= cartItems[i].product.imageUrl %>"
+                                alt="Image"
+                            /></a>
+                            <p><%= cartItems[i].product.title%></p>
+                          </div>
+                        </td>
+                        <td class="row-price">
+                          <%= cartItems[i].product.price %>
+                        </td>
+                        <td>
+                          <div class="qty">
+                            <button class="btn-minus">
+                              <i class="fa fa-minus"></i>
+                            </button>
+                            <input
+                              style="width: 25px; text-align: center"
+                              type="text"
+                              value="1"
+                              class="row-quantity"
+                            />
+                            <button class="btn-plus">
+                              <i class="fa fa-plus"></i>
+                            </button>
+                          </div>
+                        </td>
+                        <td class="row-total">
+                          <%= cartItems[i].product.price *cartItems[i].quantity
+                          %>
+                        </td>
+                        <td style="text-align: center">
+                          <button class="trash">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
                 </div>
+                <!-- End -->
+              </div>
             </div>
-        </section>
 
+            <div class="row py-5 p-4 bg-white rounded shadow-sm">
+              <div class="col-lg-6">
+                <div
+                  class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
+                >
+                  Coupon code
+                </div>
+                <div class="p-4">
+                  <p class="font-italic mb-4">
+                    If you have a coupon code, please enter it in the box below
+                  </p>
+                  <div class="input-group mb-4 border rounded-pill p-2">
+                    <input
+                      type="text"
+                      placeholder="Apply coupon"
+                      aria-describedby="button-addon3"
+                      class="form-control border-0"
+                    />
+                    <div class="input-group-append border-0">
+                      <button
+                        id="button-addon3"
+                        type="button"
+                        class="btn btn-dark px-4 rounded-pill"
+                      >
+                        <i class="fa fa-gift mr-2"></i>Apply coupon
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
+                >
+                  Instructions for seller
+                </div>
+                <div class="p-4">
+                  <p class="font-italic mb-4">
+                    If you have some information for the seller you can leave
+                    them in the box below
+                  </p>
+                  <textarea
+                    name=""
+                    cols="30"
+                    rows="2"
+                    class="form-control"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div
+                  class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
+                >
+                  Order summary
+                </div>
+                <div class="p-4">
+                  <p class="font-italic mb-4">
+                    Shipping and additional costs are calculated based on values
+                    you have entered.
+                  </p>
+                  <ul class="list-unstyled mb-4">
+                    <li
+                      class="d-flex justify-content-between py-3 border-bottom"
+                    >
+                      <strong class="text-muted">Order Subtotal </strong
+                      ><strong>$390.00</strong>
+                    </li>
+                    <li
+                      class="d-flex justify-content-between py-3 border-bottom"
+                    >
+                      <strong class="text-muted">Shipping and handling</strong
+                      ><strong>$10.00</strong>
+                    </li>
+                    <li
+                      class="d-flex justify-content-between py-3 border-bottom"
+                    >
+                      <strong class="text-muted">Tax</strong
+                      ><strong>$0.00</strong>
+                    </li>
+                    <li
+                      class="d-flex justify-content-between py-3 border-bottom"
+                    >
+                      <strong class="text-muted">Total</strong>
+                      <h5 class="font-weight-bold grand-total">$400.00</h5>
+                    </li>
+                  </ul>
+                  <button
+                    id="PlaceOrder"
+                    class="btn btn-dark rounded-pill py-2 btn-block"
+                  >
+                    Place Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <hr />
 
     <footer class="section__container footer__container">
-        <div class="footer__col">
-            <h4 class="footer__heading">CONTACT INFO</h4>
-            <p>
-                <i class="ri-map-pin-2-fill"></i> 123,Colman,israel
-            </p>
-            <p><i class="ri-mail-fill"></i>support@Colman.com</p>
-            <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      <div class="footer__col">
+        <h4 class="footer__heading">CONTACT INFO</h4>
+        <p><i class="ri-map-pin-2-fill"></i> 123,Colman,israel</p>
+        <p><i class="ri-mail-fill"></i>support@Colman.com</p>
+        <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">COMPANY</h4>
+        <p>Home</p>
+        <p>About Us</p>
+        <p>Work With Us</p>
+        <p>Our Blog</p>
+        <p>Terms & Conditions</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">USEFUL LINK</h4>
+        <p>Help</p>
+        <p>Track My Order</p>
+        <p>Men</p>
+        <p>Women</p>
+        <p>Shoes</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">INSTAGRAM</h4>
+        <div class="instagram__grid">
+          <img src="images/instagram-1.jpg" alt="instagram" />
+          <img src="images/instagram-2.jpg" alt="instagram" />
+          <img src="images/instagram-3.jpg" alt="instagram" />
+          <img src="images/instagram-4.jpg" alt="instagram" />
+          <img src="images/instagram-5.jpg" alt="instagram" />
+          <img src="images/instagram-6.jpg" alt="instagram" />
         </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">COMPANY</h4>
-            <p>Home</p>
-            <p>About Us</p>
-            <p>Work With Us</p>
-            <p>Our Blog</p>
-            <p>Terms & Conditions</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">USEFUL LINK</h4>
-            <p>Help</p>
-            <p>Track My Order</p>
-            <p>Men</p>
-            <p>Women</p>
-            <p>Shoes</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">INSTAGRAM</h4>
-            <div class="instagram__grid">
-                <img src="images/instagram-1.jpg" alt="instagram" />
-                <img src="images/instagram-2.jpg" alt="instagram" />
-                <img src="images/instagram-3.jpg" alt="instagram" />
-                <img src="images/instagram-4.jpg" alt="instagram" />
-                <img src="images/instagram-5.jpg" alt="instagram" />
-                <img src="images/instagram-6.jpg" alt="instagram" />
-            </div>
-        </div>
+      </div>
     </footer>
 
     <hr />
 
     <div class="section__container footer__bar">
-        <div class="copyright">
-            Copyright © 2023 Web Design Mastery. All rights reserved.
-        </div>
-        <div class="footer__form">
-            <form>
-                <input type="text" placeholder="ENTER YOUR EMAIL" />
-                <button class="btn" type="submit">SUBSCRIBE</button>
-            </form>
-        </div>
+      <div class="copyright">
+        Copyright © 2023 Web Design Mastery. All rights reserved.
+      </div>
+      <div class="footer__form">
+        <form>
+          <input type="text" placeholder="ENTER YOUR EMAIL" />
+          <button class="btn" type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
     </div>
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"
+    ></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
-        socket.on("connectedUsersCount", (count) => {
-            const connectedUsersCount = document.getElementById("connected-users-count");
-            connectedUsersCount.textContent = count;
+      const socket = io();
+      socket.on("connectedUsersCount", (count) => {
+        const connectedUsersCount = document.getElementById(
+          "connected-users-count"
+        );
+        connectedUsersCount.textContent = count;
+      });
+    </script>
+
+    <script>
+      let totalPrice = 0; // Variable to store the total price
+
+      function renderTotalPrice() {
+        let total = 0;
+        $("body")
+          .find(".row-total")
+          .each((i, element) => {
+            total += Number(element.textContent);
+          });
+        totalPrice = total;
+        $(".grand-total").text("$" + total);
+      }
+
+      renderTotalPrice();
+      // Fetch the user's cart items from the server
+
+      $("#PlaceOrder").click(function () {
+        // Send the order data to the server for processing
+        $.post("/cart/order", function (response) {
+          console.log("Order placed:", response);
+          // Handle the response from the server after placing the order
+          // You can display a success message or redirect the user to a confirmation page
+
+          $.get("/cart/clear", function (clearResponse) {
+            $("#cartItems").html(""); // Clear the cartItems content
+            alert("Purchase completed successfully!"); // Display an alert with the success message
+          });
+        });
+      });
+
+      $("body")
+        .find(".btn-plus,.btn-minus")
+        .each((i, element) => {
+          $(element).click(async () => {
+            const row = element.closest("tr");
+            const itemIndex = row.id;
+            const price = $(row).find(".row-price").text();
+            const quantity = $(row).find(".row-quantity").val();
+            $(row)
+              .find(".row-total")
+              .text(Number(quantity) * Number(price));
+            renderTotalPrice();
+            await $.ajax({
+              url: "cart/" + itemIndex + "/" + quantity,
+              method: "post",
+            });
+          });
         });
 
-    </script>
-        
-        <script>
-            let totalPrice = 0; // Variable to store the total price
-
-            function renderTotalPrice() {
-                let total = 0;
-                $('body').find('.row-total').each((i, element) => {
-                    total += Number(element.textContent)
-                })
-                totalPrice = total
-                $('.grand-total').text('$' + total)
-            }
-
-            renderTotalPrice()
-            // Fetch the user's cart items from the server
-
-
-
-
-            $("#PlaceOrder").click(function () {
-                // Send the order data to the server for processing
-                $.post("/cart/order", function (response) {
-                    console.log("Order placed:", response);
-                    // Handle the response from the server after placing the order
-                    // You can display a success message or redirect the user to a confirmation page
-
-
-                    $.get("/cart/clear", function (clearResponse) {
-                        $("#cartItems").html("<p>Purchase completed successfully!</p>"); // Display the success message    
-                    });
-                });
-
-
-
-            })
-
-            $('body').find('.btn-plus,.btn-minus').each((i, element) => {
-                $(element).click(async () => {
-                    const row = element.closest('tr');
-                    const itemIndex = row.id;
-                    const price = $(row).find('.row-price').text()
-                    const quantity = $(row).find('.row-quantity').val()
-                    $(row).find('.row-total').text(Number(quantity) * Number(price))
-                    renderTotalPrice()
-                    await $.ajax({
-                        url: 'cart/' + itemIndex + '/' + quantity,
-                        method: 'post'
-                    })
-                })
-            })
-
-            $('body').find('.trash').each((i, element) => {
-                $(element).click(async () => {
-                    await $.ajax({
-                        url: 'cart/' + i,
-                        method: 'delete'
-                    })
-
-                    element.closest('tr').remove()
-                    renderTotalPrice()
-                })
-            })
-
-        </script>
-        
-        <script>
-            $('.qty button').on('click', function () {
-                var $button = $(this);
-                var oldValue = $button.parent().find('input').val();
-                if ($button.hasClass('btn-plus')) {
-                    var newVal = parseFloat(oldValue) + 1;
-                } else {
-                    if (oldValue > 0) {
-                        var newVal = parseFloat(oldValue) - 1;
-                    } else {
-                        newVal = 0;
-                    }
-                }
-                $button.parent().find('input').val(newVal);
+      $("body")
+        .find(".trash")
+        .each((i, element) => {
+          $(element).click(async () => {
+            await $.ajax({
+              url: "cart/" + i,
+              method: "delete",
             });
-        </script>
 
-</body>
+            element.closest("tr").remove();
+            renderTotalPrice();
+          });
+        });
+    </script>
 
+    <script>
+      $(".qty button").on("click", function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find("input").val();
+        if ($button.hasClass("btn-plus")) {
+          var newVal = parseFloat(oldValue) + 1;
+        } else {
+          if (oldValue > 0) {
+            var newVal = parseFloat(oldValue) - 1;
+          } else {
+            newVal = 0;
+          }
+        }
+        $button.parent().find("input").val(newVal);
+      });
+    </script>
+  </body>
 </html>
 
 <style>
-    .table .img {
-        display: flex;
-        align-items: center;
-    }
+  .table .img {
+    display: flex;
+    align-items: center;
+  }
 
-    .table .img img {
-        max-width: 60px;
-        max-height: 60px;
-        margin-right: 15px;
-    }
+  .table .img img {
+    max-width: 60px;
+    max-height: 60px;
+    margin-right: 15px;
+  }
 
-    .table .img p {
-        display: inline-block;
-        text-align: left;
-        margin: 0;
-    }
+  .table .img p {
+    display: inline-block;
+    text-align: left;
+    margin: 0;
+  }
 </style>

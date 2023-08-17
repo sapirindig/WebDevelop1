@@ -1,261 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <!-- Custom CSS -->
     <style>
-        .about-container {
-            text-align: center;
-        }
+      .about-container {
+        text-align: center;
+      }
 
-        .map {
-            height: 800px;
-            margin-bottom: 20px;
-        }
+      .map {
+        height: 800px;
+        margin-bottom: 20px;
+      }
     </style>
 
     <link rel="stylesheet" href="styles.css" />
     <title>Web Develop 1</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
-        <a href="#" class="nav__logo">SLK</a>
-        <div class="nav__links">
-            <a href="/">HOME</a>
-            <a href="products">PRODUCTS</a>
-            <a href="about">ABOUT</a>
-            <a href="contact">CONTACT</a>
-            <a href="admin">ADMIN</a>
-            <a href="">USERS : <span id="connected-users-count">0</span></a>
-
-
-
-        </div>
-        <div class="nav__icons">
-            <% if (loggedIn) { %>
-                <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
-                <a class="nav-link" href="profile"><i class="fas fa-user"></i> profile</a>
-                <a class="nav-link" href="cart"><i class="fas fa-shopping-bag"></i> cart</a>
-                <% } else { %>
-                    <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a class="nav-link" href="register"><i class="fas fa-user-plus"></i> Register</a>
-                    <% } %>
-        </div>
+      <a href="#" class="nav__logo">SLK</a>
+      <div class="nav__links">
+        <a href="/">HOME</a>
+        <a href="products">PRODUCTS</a>
+        <a href="about">ABOUT</a>
+        <a href="contact">CONTACT</a>
+        <a href="admin">ADMIN</a>
+        <a href="">USERS : <span id="connected-users-count">0</span></a>
+      </div>
+      <div class="nav__icons">
+        <% if (loggedIn) { %>
+        <a class="nav-link" href="logout"><i class="fa fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="profile"
+          ><i class="fas fa-user"></i> profile</a
+        >
+        <a class="nav-link" href="cart"
+          ><i class="fas fa-shopping-bag"></i> cart</a
+        >
+        <% } else { %>
+        <a class="nav-link" href="login"
+          ><i class="fas fa-sign-in-alt"></i> Login</a
+        >
+        <a class="nav-link" href="register"
+          ><i class="fas fa-user-plus"></i> Register</a
+        >
+        <% } %>
+      </div>
     </nav>
 
     <div class="about-container">
-        <div class="map-container">
-            <div id="map1" class="map"></div>
-        </div>
+      <div class="map-container">
+        <div id="map1" class="map"></div>
+      </div>
     </div>
 
     <hr />
 
     <footer class="section__container footer__container">
-        <div class="footer__col">
-            <h4 class="footer__heading">CONTACT INFO</h4>
-            <p>
-                <i class="ri-map-pin-2-fill"></i> 123,Colman,israel
-            </p>
-            <p><i class="ri-mail-fill"></i>support@Colman.com</p>
-            <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      <div class="footer__col">
+        <h4 class="footer__heading">CONTACT INFO</h4>
+        <p><i class="ri-map-pin-2-fill"></i> 123,Colman,israel</p>
+        <p><i class="ri-mail-fill"></i>support@Colman.com</p>
+        <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">COMPANY</h4>
+        <p>Home</p>
+        <p>About Us</p>
+        <p>Work With Us</p>
+        <p>Our Blog</p>
+        <p>Terms & Conditions</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">USEFUL LINK</h4>
+        <p>Help</p>
+        <p>Track My Order</p>
+        <p>Men</p>
+        <p>Women</p>
+        <p>Shoes</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">INSTAGRAM</h4>
+        <div class="instagram__grid">
+          <img src="images/instagram-1.jpg" alt="instagram" />
+          <img src="images/instagram-2.jpg" alt="instagram" />
+          <img src="images/instagram-3.jpg" alt="instagram" />
+          <img src="images/instagram-4.jpg" alt="instagram" />
+          <img src="images/instagram-5.jpg" alt="instagram" />
+          <img src="images/instagram-6.jpg" alt="instagram" />
         </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">COMPANY</h4>
-            <p>Home</p>
-            <p>About Us</p>
-            <p>Work With Us</p>
-            <p>Our Blog</p>
-            <p>Terms & Conditions</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">USEFUL LINK</h4>
-            <p>Help</p>
-            <p>Track My Order</p>
-            <p>Men</p>
-            <p>Women</p>
-            <p>Shoes</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">INSTAGRAM</h4>
-            <div class="instagram__grid">
-                <img src="images/instagram-1.jpg" alt="instagram" />
-                <img src="images/instagram-2.jpg" alt="instagram" />
-                <img src="images/instagram-3.jpg" alt="instagram" />
-                <img src="images/instagram-4.jpg" alt="instagram" />
-                <img src="images/instagram-5.jpg" alt="instagram" />
-                <img src="images/instagram-6.jpg" alt="instagram" />
-            </div>
-        </div>
+      </div>
     </footer>
-
-   
 
     <hr />
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
-        socket.on("connectedUsersCount", (count) => {
-            const connectedUsersCount = document.getElementById("connected-users-count");
-            connectedUsersCount.textContent = count;
-        });
-
+      const socket = io();
+      socket.on("connectedUsersCount", (count) => {
+        const connectedUsersCount = document.getElementById(
+          "connected-users-count"
+        );
+        connectedUsersCount.textContent = count;
+      });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_y3QWC6Ib1lAyl7CtPOfz3JsQOaAeFLo&callback=initMaps"
-        async defer></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_y3QWC6Ib1lAyl7CtPOfz3JsQOaAeFLo&callback=initMaps"
+      async
+      defer
+    ></script>
     <script>
+      // Initialize the maps
+      function initMaps() {
+        // Fetch store locations from the server
+        $.get("/store-locations", function (storeLocations) {
+          if (Array.isArray(storeLocations) && storeLocations.length > 0) {
+            // Iterate over each store location
+            storeLocations.forEach(function (location, index) {
+              // Create a map instance for each location
+              var map = new google.maps.Map(document.getElementById("map1"), {
+                center: {
+                  lat: location.coordinates.lat,
+                  lng: location.coordinates.lng,
+                },
+                zoom: 10,
+              });
 
+              // Create a marker for the store location
+              var marker = new google.maps.Marker({
+                position: {
+                  lat: location.coordinates.lat,
+                  lng: location.coordinates.lng,
+                },
+                map: map,
+                title: location.name,
+              });
 
-        // Initialize the maps
-        function initMaps() {
-            // Fetch store locations from the server
-            $.get("/store-locations", function (storeLocations) {
+              // Create an info window for the marker
+              var infoWindow = new google.maps.InfoWindow({
+                content: location.address,
+              });
 
-                if (Array.isArray(storeLocations) && storeLocations.length > 0) {
-                    // Iterate over each store location
-                    storeLocations.forEach(function (location, index) {
-                        // Create a map instance for each location
-                        var map = new google.maps.Map(document.getElementById("map1"), {
-                            center: { lat: location.coordinates.lat, lng: location.coordinates.lng },
-                            zoom: 10,
-                        });
-
-                        // Create a marker for the store location
-                        var marker = new google.maps.Marker({
-                            position: { lat: location.coordinates.lat, lng: location.coordinates.lng },
-                            map: map,
-                            title: location.name
-                        });
-
-                        // Create an info window for the marker
-                        var infoWindow = new google.maps.InfoWindow({
-                            content: location.address
-                        });
-
-                        // Add a click event listener to the marker
-                        marker.addListener('click', function () {
-                            // Open the info window when the marker is clicked
-                            infoWindow.open(map, marker);
-                        });
-                    });
-                } else {
-                    console.log("No store locations found or invalid data format.");
-                }
+              // Add a click event listener to the marker
+              marker.addListener("click", function () {
+                // Open the info window when the marker is clicked
+                infoWindow.open(map, marker);
+              });
             });
-        }
-
-        // Call the initMaps function when the page finishes loading
-        $(document).ready(function () {
-            initMaps();
+          } else {
+            console.log("No store locations found or invalid data format.");
+          }
         });
+      }
+
+      // Call the initMaps function when the page finishes loading
+      $(document).ready(function () {
+        initMaps();
+      });
     </script>
-</body>
+  </body>
 
-
-
-<style>
+  <style>
     .contact_section {
-  position: relative;
-}
+      position: relative;
+    }
 
-.contact_section .container-bg {
-  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.1);
-}
+    .contact_section .container-bg {
+      -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.1);
+    }
 
-.contact_section .heading_container {
-  -webkit-box-align: start;
+    .contact_section .heading_container {
+      -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: flex-start;
-  text-align: left;
-  margin-bottom: 45px;
-}
+      align-items: flex-start;
+      text-align: left;
+      margin-bottom: 45px;
+    }
 
-.contact_section .row {
-  -webkit-box-align: stretch;
+    .contact_section .row {
+      -webkit-box-align: stretch;
       -ms-flex-align: stretch;
-          align-items: stretch;
-}
+      align-items: stretch;
+    }
 
-.contact_section form {
-  padding-right: 35px;
-  padding: 45px 20px;
-}
+    .contact_section form {
+      padding-right: 35px;
+      padding: 45px 20px;
+    }
 
-.contact_section input {
-  width: 100%;
-  border: 1px solid #919191;
-  height: 50px;
-  margin-bottom: 25px;
-  padding-left: 25px;
-  background-color: transparent;
-  outline: none;
-  color: #101010;
-}
+    .contact_section input {
+      width: 100%;
+      border: 1px solid #919191;
+      height: 50px;
+      margin-bottom: 25px;
+      padding-left: 25px;
+      background-color: transparent;
+      outline: none;
+      color: #101010;
+    }
 
-.contact_section input::-webkit-input-placeholder {
-  color: #131313;
-}
+    .contact_section input::-webkit-input-placeholder {
+      color: #131313;
+    }
 
-.contact_section input:-ms-input-placeholder {
-  color: #131313;
-}
+    .contact_section input:-ms-input-placeholder {
+      color: #131313;
+    }
 
-.contact_section input::-ms-input-placeholder {
-  color: #131313;
-}
+    .contact_section input::-ms-input-placeholder {
+      color: #131313;
+    }
 
-.contact_section input::placeholder {
-  color: #131313;
-}
+    .contact_section input::placeholder {
+      color: #131313;
+    }
 
-.contact_section input.message-box {
-  height: 120px;
-}
+    .contact_section input.message-box {
+      height: 120px;
+    }
 
-.contact_section button {
-  display: inline-block;
-  padding: 12px 45px;
-  background-color: #fbac2e;
-  color: #ffffff;
-  border: 1.5px solid #fbac2e;
-  border-radius: 0;
-  display: block;
-  color: #fff;
-  margin: 35px auto 0 auto;
-}
+    .contact_section button {
+      display: inline-block;
+      padding: 12px 45px;
+      background-color: #fbac2e;
+      color: #ffffff;
+      border: 1.5px solid #fbac2e;
+      border-radius: 0;
+      display: block;
+      color: #fff;
+      margin: 35px auto 0 auto;
+    }
 
-.contact_section button:hover {
-  background-color: transparent;
-  color: #fbac2e;
-}
+    .contact_section button:hover {
+      background-color: transparent;
+      color: #fbac2e;
+    }
 
-.contact_section .map_container {
-  height: 100%;
-}
+    .contact_section .map_container {
+      height: 100%;
+    }
 
-.contact_section .map_container .map-responsive {
-  height: 100%;
-}
-
-</style>
-
-
-
-
-
-
-
-
+    .contact_section .map_container .map-responsive {
+      height: 100%;
+    }
+  </style>
+</html>

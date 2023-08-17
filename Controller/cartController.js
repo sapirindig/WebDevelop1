@@ -74,7 +74,6 @@ exports.addCart = async (req, res) => {
   }
 };
 
-
 exports.getCartPage = async (req, res) => {
   const cartItems = (await getCartProducts(req)) || [];
   console.log({ cartItems });
