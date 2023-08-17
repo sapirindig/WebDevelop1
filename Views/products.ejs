@@ -19,7 +19,7 @@
 <body>
     <div class="header__bar">Free Shipping on Orders Over $50</div>
     <nav class="section__container nav__container">
-        <a href="#" class="nav__logo">Mon'sa</a>
+        <a href="#" class="nav__logo">SLK</a>
         <div class="nav__links">
             <a href="/">HOME</a>
             <a href="products">PRODUCTS</a>
@@ -117,7 +117,7 @@
 
                 <div class="col" id="product-container">
                     <!-- Product cards -->
-                    <div class="row">
+                    <div class="row d-flex">
                         <!-- Search form -->
                         <div class="col-md-12">
                             <form class="search-form">
@@ -203,10 +203,10 @@
         <div class="footer__col">
             <h4 class="footer__heading">CONTACT INFO</h4>
             <p>
-                <i class="ri-map-pin-2-fill"></i> 123, London Bridge Street, London
+                <i class="ri-map-pin-2-fill"></i> 123,Colman,israel
             </p>
-            <p><i class="ri-mail-fill"></i> support@monsa.com</p>
-            <p><i class="ri-phone-fill"></i> (+012) 3456 789</p>
+            <p><i class="ri-mail-fill"></i>support@Colman.com</p>
+            <p><i class="ri-phone-fill"></i> (+972) 3456 789</p>
         </div>
         <div class="footer__col">
             <h4 class="footer__heading">COMPANY</h4>
@@ -252,102 +252,75 @@
     </div>
 
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
+<!-- ... previous HTML ... -->
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Handle connected users count
         const socket = io();
         socket.on("connectedUsersCount", (count) => {
             const connectedUsersCount = document.getElementById("connected-users-count");
             connectedUsersCount.textContent = count;
         });
 
-    </script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-
-    <script>
-        $(document).ready(function () {
-            // Add event listener to "Add to Cart" buttons
-            $(".addToCart").click(function (event) {
-                event.preventDefault();
-
-                // Get the product ID from the data attribute
-                const productId = $(this).data("product-id");
-
-                // Send AJAX request to add the product to the cart
-                $.post(`/cart/${productId}`, function (response) {
-                    console.log("Product added to cart:", response);
-                    // Show a success message or update the UI as needed
-                    alert("Product added to cart!");
-                }).fail(function (error) {
-                    console.error("Error adding product to cart:", error.responseText);
-                    alert("Failed to add product to cart. Please log in or create an account.");
-                });
-            });
-
-
-            // Filter products based on selected filters
-            $(".Filter").click(function (event) {
-                event.preventDefault();
-
-                // Get the filter type and value from data attributes
-                const filterType = $(this).data("filter");
-                const filterValue = $(this).data("value");
-                console.log(filterType)
-                console.log(filterValue)
-
-                // Filter products based on the selected filter
-                filterProducts(filterType, filterValue);
-            });
-
-            // Clear all filters
-            $("#clearFiltersBtn").click(function (event) {
-                event.preventDefault();
-
-                // Show all product cards
-                $(".product-card").show();
-
-                // Reset active state of filter items
-                $(".Filter.active").removeClass("active");
+        // Add event listener to "Add to Cart" buttons
+        $(".addToCart").click(function (event) {
+            event.preventDefault();
+            const productId = $(this).data("product-id");
+            $.post(`/cart/${productId}`, function (response) {
+                alert("Product added to cart!");
+            }).fail(function (error) {
+                alert("Failed to add product to cart. Please log in or create an account.");
             });
         });
 
-        function filterProducts(filterType, filterValue) {
-            // Hide all product cards
-            $(".product-card").hide();
+        // Filter products based on selected filters
+        $(".Filter").click(function (event) {
+            event.preventDefault();
+            const filterType = $(this).data("filter");
+            const filterValue = $(this).data("value");
+            filterProducts(filterType, filterValue);
+        });
 
-            // Show product cards that match the selected filter
+        // Clear all filters
+        $("#clearFiltersBtn").click(function (event) {
+            event.preventDefault();
+            $(".product-card").show();
+            $(".Filter.active").removeClass("active");
+        });
+
+        // Search products
+        $("#searchInput").on("input", function () {
+            const searchValue = $(this).val().toLowerCase();
+            filterSearchProducts(searchValue);
+        });
+
+        function filterSearchProducts(searchValue) {
+            $(".product-card").hide();
+            $(".product-card").each(function () {
+                const title = $(this).find(".card-title").text().toLowerCase();
+                const description = $(this).find(".card-text").text().toLowerCase();
+                if (title.includes(searchValue) || description.includes(searchValue)) {
+                    $(this).show();
+                }
+            });
+        }
+
+        function filterProducts(filterType, filterValue) {
+            $(".product-card").hide();
             if (filterType === "category" || filterType === "color" || filterType === "size" || filterType === "gender") {
                 $(`.product-card[data-${filterType}="${filterValue}"]`).show();
             }
-
         }
+    });
+</script>
 
+<!-- ... remaining HTML ... -->
 
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            // Search products
-            $("#searchInput").on("input", function () {
-                const searchValue = $(this).val().toLowerCase();
-                filterProducts(searchValue);
-            });
-            function filterProducts(searchValue) {
-                // Hide all product cards
-                $(".product-card").hide();
-
-                // Show product cards that match the search value in title or description
-                $(".product-card").each(function () {
-                    const title = $(this).find(".card-title").text().toLowerCase();
-                    const description = $(this).find(".card-text").text().toLowerCase();
-                    if (title.includes(searchValue) || description.includes(searchValue)) {
-                        $(this).show();
-                    }
-                });
-            }
-        });
-    </script>
-
+    
 </body>
 
 

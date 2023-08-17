@@ -1,16 +1,13 @@
-
 const Product = require("./Models/ProductModel");
 const Orders = require("./Models/OrderModel");
 const User = require("./Models/UserModel");
 
 const express = require("express");
 const session = require("express-session");
-
 const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
-
 const store = new MongoDBStore({
-  uri: "mongodb://localhost/WebDevelop_1", // MongoDB connection URI
+  uri: "mongodb://127.0.0.1/SKL", // MongoDB connection URI
   collection: "sessions", // Collection name to store sessions
 });
 // Catch and log any errors from the session store
@@ -71,24 +68,29 @@ const fileFilter = function (req, file, cb) {
 };
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
-app.use("/public/images",express.static(path.join(__dirname, "public", "images"))
+app.use(
+  "/public/images",
+  express.static(path.join(__dirname, "public", "images"))
 );
 app.use(express.json());
 
-
-
 app.get("/", async function (req, res) {
-  const mensClothing = (await Product.find({ gender: "Mens" })).splice(0,4);
-  const womensClothing = (await Product.find({ gender: "Womens" })).splice(0,4);
-  res.render("index.ejs", { loggedIn: req.session.userId, mensClothing ,womensClothing} );
+  const mensClothing = (await Product.find({ gender: "Mens" })).splice(0, 4);
+  const womensClothing = (await Product.find({ gender: "Womens" })).splice(
+    0,
+    4
+  );
+  res.render("index.ejs", {
+    loggedIn: req.session.userId,
+    mensClothing,
+    womensClothing,
+  });
 });
-
 
 app.get("/products", async function (req, res) {
   const {
@@ -131,6 +133,22 @@ app.get("/products", async function (req, res) {
   });
 });
 
+async function isAdmin(req, res, next) {
+  try {
+    const user = await User.findById(req.session.userId);
+    if (user.role === "admin") {
+      return next();
+    } else {
+      res.status(403).send("Forbidden: You do not have the right permissions.");
+    }
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+const mapController = require("./Controller/mapController.js");
+app.get("/store-locations", mapController.getLocations);
+
 app.get("/contact", function (req, res) {
   res.render("contact.ejs", { loggedIn: req.session.userId });
 });
@@ -143,16 +161,17 @@ app.get("/profile", async function (req, res) {
   const userId = req.session.userId;
   const userDetails = await User.findById(userId);
   const orders = await Orders.find({ userId: req.session.userId });
-  res.render("profile.ejs", { loggedIn: req.session.userId, orders,userDetails });
+  res.render("profile.ejs", {
+    loggedIn: req.session.userId,
+    orders,
+    userDetails,
+  });
 });
 
-app.get("/admin", async function (req, res) {
-  const products = await Product.find()
-  res.render("admin.ejs", { loggedIn: req.session.userId , products });
+app.get("/admin", isAdmin, async function (req, res) {
+  const products = await Product.find();
+  res.render("admin.ejs", { loggedIn: req.session.userId, products });
 });
-
-
-
 
 const userController = require("./Controller/userController");
 app.put("/user/changeFullname", userController.ChangeFullname);
@@ -161,7 +180,6 @@ app.put("/user/changeEmail", userController.ChangeEmail);
 app.put("/user/changePhone", userController.ChangePhone);
 app.put("/user/changeAdress", userController.ChangeAddress);
 
-
 const authController = require("./Controller/authController");
 app.get("/logout", authController.Logout);
 app.post("/register", authController.Register);
@@ -169,15 +187,17 @@ app.post("/login", authController.Login);
 app.get("/login", authController.LoginPage);
 app.get("/register", authController.RegisterPage);
 
-
 const adminController = require("./Controller/adminController");
 app.get("/admin/products", adminController.getProductList);
-app.post("/admin/create",upload.single("imagePath"),adminController.createProduct);
+app.post(
+  "/admin/create",
+  upload.single("imagePath"),
+  adminController.createProduct
+);
 app.post("/admin/update-product", adminController.updateProduct);
 app.post("/admin/delete-product", adminController.deleteProduct);
 app.get("/admin", adminController.adminPage);
 app.get("/admin/orders", adminController.getOrders);
-
 
 const cartController = require("./Controller/cartController.js");
 app.get("/cart", cartController.getCartPage);
@@ -188,13 +208,9 @@ app.post("/cart/:index/:quantity", cartController.changeAmount);
 app.delete("/cart/:deleteIndex", cartController.removeFromCart);
 app.get("/cart/clear", cartController.ClearCart);
 
-
-
-
-
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://localhost/WebDevelop_1", {
+  .connect("mongodb://127.0.0.1/SKL", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
